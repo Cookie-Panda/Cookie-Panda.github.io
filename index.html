@@ -1,9 +1,10 @@
 <html lang="en">
+    <!-- Was also known as bibuild before-->
 	<head>
 <!-- PWA metadata -->
 <link rel="manifest" href="manifest.json" />
-<meta name="theme-color" content="#6750A4" />
 <meta name="description" content="Wanxian: Biome Generator For Minecraft Bedrock Edition." />
+<meta name="theme-color" content="#6750A4" />
 
 <!-- Icons -->
 <link rel="icon" href="icons/icon.svg" type="image/svg+xml" />
@@ -20,9 +21,13 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, shrink-to-fit=no">
 		<title>Wanxian - Biome Generator</title>
-		<link href="/css2.css" rel="stylesheet">
+		<link href="css2.css" rel="stylesheet">
 		<link rel="stylesheet" href="styles.css">
-		<script src="themes.js"></script> 
+		<script src="themes.js"></script>
+
+<script src="presets_data.js"></script>
+</script>
+</body>
 	</head>
 	<body>
 		<header class="expressive">
@@ -58,6 +63,15 @@
     <span class="material-symbols-rounded leading-icon">palette</span>
     <span class="list-label">Change Theme</span>
 </a>
+<div class="menu-divider"></div>
+<a href="#" class="list-item" id="decorative-presets-toggle">
+    <span class="material-symbols-rounded leading-icon">extension</span>
+    <span class="list-label">Decorative Presets (Present In Tags, Testing Version)</span>
+    <button class="icon-button trailing-icon-button" data-toggled="off">
+        <span class="material-symbols-rounded">toggle_off</span>
+    </button>
+</a>
+
 <!-- END ADDED -->
 <div class="menu-divider"></div>
 
@@ -115,7 +129,7 @@
 				<!-- Core Biome Information -->
 				<div class="form-group">
 					<label for="format_version" class="required-field">Format Version:</label>
-					<input type="text" id="format_version" value="1.21.120" required="">
+					<input type="text" id="format_version" value="1.26.0" required="">
 					<div class="tooltip"><span class="material-symbols-rounded">question_mark</span>
 						<span class="tooltiptext">Version of the JSON schema used by this file. Example: "1.21.120"</span>
 					</div>
@@ -138,9 +152,19 @@
 					<span class="slider"></span>
 					</label>
 				</div>
+				<div class="switch-container">
+    <label for="show_unused_components">Unused/Legacy Components:</label>
+    <label class="switch">
+        <input type="checkbox" id="show_unused_components">
+        <span class="slider"></span>
+    </label>
+</div>
+
+
+
 				<div class="menu-divider"></div>
 				<!-- Group 1: Climate & Environmental Properties -->
-				<h3>Climate &amp; Environmental Properties</h3>
+				
 				<!-- Component: minecraft:climate -->
 				<div class="component-section start">
 					<h3 class="collapsible-header collapsed" data-target="climate-content">
@@ -148,7 +172,7 @@
 						<label class="switch">
 						<input type="checkbox" id="enable_climate" class="component-toggle">
 						</label>
-						<span class="material-symbols-rounded">more</span>
+						<span class="material-symbols-rounded"></span>
 					</h3>
 					<div id="climate-content" class="component-content" style="display: none;">
 						<div class="menu-divider"></div>
@@ -186,7 +210,7 @@
 						<label class="switch">
 						<input type="checkbox" id="enable_humidity" class="component-toggle">
 						</label>
-						<span class="material-symbols-rounded">more</span> 
+						<span class="material-symbols-rounded"></span> 
 					</h3>
 					<div id="humidity-content" class="component-content" style="display: none;">
 						<div class="menu-divider"></div>
@@ -209,7 +233,7 @@
 						<label class="switch">
 						<input type="checkbox" id="enable_partially_frozen" class="component-toggle">
 						</label>
-						<span class="material-symbols-rounded">more</span>  
+						<span class="material-symbols-rounded"></span>  
 					</h3>
 					<div id="partially_frozen-content" class="component-content" style="display: none;">
 						<div class="menu-divider"></div>
@@ -222,7 +246,7 @@
 				<!-- Group 3: Terrain Generation Rules -->
 				<!-- Component: minecraft:multinoise_generation_rules no longer present here-->
 				<!-- Group 4: Surface & Material Definitions -->
-				<h3>Surface Material Definitions &amp; Terrain Generation Rules</h3>
+				
 				<!-- Component: minecraft:surface_builder -->
 				<div class="component-section start">
 					<h3 class="collapsible-header collapsed" data-target="surface_builder-content">
@@ -230,7 +254,7 @@
 						<label class="switch">
 						<input type="checkbox" id="enable_surface_builder" class="component-toggle">
 						</label>
-						<span class="material-symbols-rounded">more</span>
+						<span class="material-symbols-rounded"></span>
 					</h3>
 					<div id="surface_builder-content" class="component-content" style="display: none;">
 						<div class="menu-divider"></div>
@@ -263,7 +287,7 @@
 						<label class="switch">
 						<input type="checkbox" id="enable_mountain_parameters" class="component-toggle">
 						</label>
-						<span class="material-symbols-rounded">more</span>
+						<span class="material-symbols-rounded"></span>
 					</h3>
 					<div id="mountain_parameters-content" class="component-content" style="display: none;">
 						<div class="menu-divider"></div>
@@ -358,7 +382,7 @@
 						<label class="switch">
 						<input type="checkbox" id="enable_surface_material_adjustments" class="component-toggle">
 						</label>
-						<span class="material-symbols-rounded">more</span>
+						<span class="material-symbols-rounded"></span>
 					</h3>
 					<div id="surface_material_adjustments-content" class="component-content" style="display: none;">
 						<div class="menu-divider"></div>
@@ -377,14 +401,14 @@
 				<!-- Group 5: Biome Transformations & Replacements -->
 				<!-- Component: minecraft:overworld_generation_rules is no longer here -->
 				<!-- Component: minecraft:replace_biomes -->
-				<h3>Replace Biomes</h3>
+				
 				<div class="component-section single">
 					<h3 class="collapsible-header collapsed" data-target="replace_biomes-content">
 						<span class="component-title">replace biomes</span>
 						<label class="switch">
 						<input type="checkbox" id="enable_replace_biomes" class="component-toggle">
 						</label>
-						<span class="material-symbols-rounded">more</span>
+						<span class="material-symbols-rounded"></span>
 					</h3>
 					<div id="replace_biomes-content" class="component-content" style="display: none;">
 						<div class="menu-divider"></div>
@@ -405,7 +429,6 @@
 					</div>
 				</div>
 				<!-- Group 6: Tags & Spawning -->
-				<h3>Tags &amp; Spawning &amp; Map Tints</h3>
 				<!-- Component: minecraft:tags -->
 				<div class="component-section start">
 					<h3 class="collapsible-header collapsed" data-target="tags-content">
@@ -413,7 +436,7 @@
 						<label class="switch">
 						<input type="checkbox" id="enable_tags" class="component-toggle">
 						</label>
-						<span class="material-symbols-rounded">more</span>
+						<span class="material-symbols-rounded"></span>
 					</h3>
 					<div id="tags-content" class="component-content" style="display: none;">
 						<div class="menu-divider"></div>
@@ -513,7 +536,25 @@
 							</div>
 							<div id="custom_tags_display" class="tag-list"></div>
 						</div>
+						<div id="decoration-presets-section" class="component-section single" style="display: none; margin-bottom: 20px; border: 1px solid var(--md-sys-color-primary);">
+    <div style="padding: 16px; display: flex; align-items: center; justify-content: space-between; background: var(--md-sys-color-surface-container-low); border-radius: var(--radius-m);">
+        <div style="display: flex; align-items: center; gap: 15px;">
+            <div style="width: 40px; height: 40px; background: var(--md-sys-color-primary-container); color: var(--md-sys-color-on-primary-container); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                <span class="material-symbols-rounded">forest</span>
+            </div>
+            <div>
+                <h3 style="margin: 0; font-size: 1rem; color: var(--md-sys-color-on-surface);">Decorative Presets</h3>
+                <p id="decoration-active-count" style="margin: 0; font-size: 0.85rem; color: var(--md-sys-color-on-surface-variant);">0 items selected</p>
+            </div>
+        </div>
+        <button id="btn_manage_decorations" class="m3-btn-filled button" style="height: 36px; padding: 0 16px;">
+            <span class="material-symbols-rounded" style="font-size: 18px; margin-right: 8px;">tune</span>
+            Manage
+        </button>
+    </div>
+</div>
 					</div>
+				
 				</div>
 				<!-- Component: minecraft:creature_spawn_probability -->
 				<div class="component-section">
@@ -522,7 +563,7 @@
 						<label class="switch">
 						<input type="checkbox" id="enable_creature_spawn_probability" class="component-toggle">
 						</label>
-						<span class="material-symbols-rounded">more</span> 
+						<span class="material-symbols-rounded"></span> 
 					</h3>
 					<div id="creature_spawn_probability-content" class="component-content" style="display: none;">
 						<div class="menu-divider"></div>
@@ -530,9 +571,40 @@
 							<p>Probability that creatures will spawn within the biome when a chunk is generated.</p>
 							<div class="form-group">
 								<label for="creature_spawn_probability_value">Probability (Float):</label>
-								<input type="number" step="0.01" min="0.0" max="0.75" id="creature_spawn_probability_value" placeholder="e.g., 0.5">
+								<input type="number" step="0.01" min="0.0" max="0.75" id="creature_spawn_probability_value" placeholder="e.g., 0.5" style="display:none;">
+<div class="custom-slider-replacement" data-target-id="creature_spawn_probability_value" data-min-value="0.0" data-max-value="0.75" data-decimal-places="2" data-initial-value="0.5"></div>
+
 								<div class="tooltip"><span class="material-symbols-rounded">question_mark</span>
 									<span class="tooltiptext">Probabiltity between [0.0, 0.75] of creatures spawning within the biome on chunk generation.</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+<div class="component-section">
+					<h3 class="collapsible-header collapsed" data-target="village_type-content">
+						<span class="component-title">village type</span>
+						<label class="switch">
+						<input type="checkbox" id="enable_village_type" class="component-toggle">
+						</label>
+						<span class="material-symbols-rounded"></span> 
+					</h3>
+					<div id="village_type-content" class="component-content" style="display: none;">
+						<div class="menu-divider"></div>
+						<div style="margin: 25px;">
+							<p>Determines the type of village structure that can spawn in this biome.</p>
+							<div class="form-group">
+								<label for="village_type_select">Village Type:</label>
+								<select id="village_type_select">
+									<option value="desert">"desert"</option>
+									<option value="ice">"ice"</option>
+									<option value="savanna">"savanna"</option>
+									<option value="taiga">"taiga"</option>
+									<option value="default" selected>Default ("default")</option>
+								</select>
+								<div class="tooltip"><span class="material-symbols-rounded">question_mark</span>
+									<span class="tooltiptext">The style of village buildings that will generate in the biome.</span>
 								</div>
 							</div>
 						</div>
@@ -546,7 +618,7 @@
 						<label class="switch">
 						<input type="checkbox" id="enable_map_tints" class="component-toggle">
 						</label>
-						<span class="material-symbols-rounded">more</span>
+						<span class="material-symbols-rounded"></span>
 					</h3>
 					<div id="map_tints-content" class="component-content" style="display: none;">
 						<div class="menu-divider"></div>
@@ -598,20 +670,13 @@
 						</div>
 					</div>
 				</div>
+				
 								<!-- Group 7: Unused Components for custom biomes, should be not included-->
-								<div class="switch-container" style="margin-top: 20px; border-top: 1px solid var(--md-sys-color-outline-variant); padding-top: 15px;">
-    <label for="show_unused_components" style="font-size: 1.1em; color: var(--md-sys-color-on-surface);">Unused/Legacy Components</label>
-    <label class="switch">
-        <input type="checkbox" id="show_unused_components">
-        <span class="slider"></span>
-    </label>
-</div>
+								
 
 <div id="unused_components_wrapper" style="display: none;">
-    								<div class="tooltip component-section" style=""><span class="material-symbols-rounded">question_mark</span>
-									<span class="tooltiptext">These component are Pre Caves & Cliffs update component and won't customize your custom biomes .</span>
-								</div>
-				<h3>Unused Components</h3>
+    								
+				
 				
 				<!-- Component: minecraft:overworld_height -->
 				
@@ -621,7 +686,7 @@
 				        <label class="switch">
 				            <input type="checkbox" id="enable_overworld_height" class="component-toggle">
 				        </label>
-				        <span class="material-symbols-rounded">more</span>
+				        <span class="material-symbols-rounded"></span>
 				    </h3>
 				    <div id="overworld_height-content" class="component-content" style="display: none;">
 				        <div class="menu-divider"></div>
@@ -680,7 +745,7 @@
 						<label class="switch">
 						<input type="checkbox" id="enable_overworld_generation_rules" class="component-toggle">
 						</label>
-						<span class="material-symbols-rounded">more</span>
+						<span class="material-symbols-rounded"></span>
 					</h3>
 					<div id="overworld_generation_rules-content" class="component-content" style="display: none;">
 						<div class="menu-divider"></div>
@@ -793,6 +858,12 @@
 										<option value="minecraft:taiga_mutated">minecraft:taiga_mutated</option>
 										<option value="minecraft:taiga">minecraft:taiga</option>
 										<option value="minecraft:warm_ocean">minecraft:warm_ocean</option>
+				  <option value="minecraft:warped_forest">minecraft:warped_forest</option>
+				  <option value="minecraft:the_end">minecraft:the_end</option>
+				  <option value="minecraft:soulsand_valley">minecraft:soulsand_valley</option>
+				  <option value="minecraft:crimson_forest">minecraft:crimson_forest</option>
+				  <option value="minecraft:hell">minecraft:hell</option>
+				  <option value="minecraft:basalt_deltas">minecraft:basalt_deltas</option>
 									</select>
 									<div class="tooltip"><span class="material-symbols-rounded">question_mark</span>
 										<span class="tooltiptext">Select one or more biome names.</span>
@@ -905,6 +976,12 @@
 										<option value="minecraft:taiga_mutated">minecraft:taiga_mutated</option>
 										<option value="minecraft:taiga">minecraft:taiga</option>
 										<option value="minecraft:warm_ocean">minecraft:warm_ocean</option>
+				  <option value="minecraft:warped_forest">minecraft:warped_forest</option>
+				  <option value="minecraft:the_end">minecraft:the_end</option>
+				  <option value="minecraft:soulsand_valley">minecraft:soulsand_valley</option>
+				  <option value="minecraft:crimson_forest">minecraft:crimson_forest</option>
+				  <option value="minecraft:hell">minecraft:hell</option>
+				  <option value="minecraft:basalt_deltas">minecraft:basalt_deltas</option>
 									</select>
 									<div class="tooltip"><span class="material-symbols-rounded">question_mark</span>
 										<span class="tooltiptext">Select one or more biome names.</span>
@@ -1018,6 +1095,12 @@
 										<option value="minecraft:taiga_mutated">minecraft:taiga_mutated</option>
 										<option value="minecraft:taiga">minecraft:taiga</option>
 										<option value="minecraft:warm_ocean">minecraft:warm_ocean</option>
+				  <option value="minecraft:warped_forest">minecraft:warped_forest</option>
+                  <option value="minecraft:the_end">minecraft:the_end</option>
+                  <option value="minecraft:soulsand_valley">minecraft:soulsand_valley</option>
+                  <option value="minecraft:crimson_forest">minecraft:crimson_forest</option>
+                  <option value="minecraft:hell">minecraft:hell</option>
+                  <option value="minecraft:basalt_deltas">minecraft:basalt_deltas</option>
 									</select>
 									<div class="tooltip"><span class="material-symbols-rounded">question_mark</span>
 										<span class="tooltiptext">Select one or more biome names.</span>
@@ -1130,6 +1213,12 @@
 										<option value="minecraft:taiga_mutated">minecraft:taiga_mutated</option>
 										<option value="minecraft:taiga">minecraft:taiga</option>
 										<option value="minecraft:warm_ocean">minecraft:warm_ocean</option>
+				  <option value="minecraft:warped_forest">minecraft:warped_forest</option>
+<option value="minecraft:the_end">minecraft:the_end</option>
+<option value="minecraft:soulsand_valley">minecraft:soulsand_valley</option>
+<option value="minecraft:crimson_forest">minecraft:crimson_forest</option>
+<option value="minecraft:hell">minecraft:hell</option>
+<option value="minecraft:basalt_deltas">minecraft:basalt_deltas</option>
 									</select>
 									<div class="tooltip"><span class="material-symbols-rounded">question_mark</span>
 										<span class="tooltiptext">Select one or more biome names.</span>
@@ -1154,7 +1243,7 @@
 				        <label class="switch">
 				            <input type="checkbox" id="enable_multinoise_generation_rules" class="component-toggle">
 				        </label>
-				        <span class="material-symbols-rounded">more</span>
+				        <span class="material-symbols-rounded"></span>
 				    </h3>
 				    <div id="multinoise_generation_rules-content" class="component-content" style="display: none;">
 				        <div class="menu-divider"></div>
@@ -1188,18 +1277,15 @@
 			<div id="hidden-container">
 			    <div class="menu-divider"></div>
 				<form id="clientBiomeForm">
-					<h2>Client Biome Components</h2>
 					
-					<p><code>Select the visual and audio components you wish to include in your client biome definition.</code></p>
-					<div class="menu-divider"></div>
-					<h3>Visual Appearance</h3>
+					
 					<div class="component-section start">
 						<h3 class="collapsible-header collapsed" data-target="sky_color-content">
 							<span class="component-title">sky_color</span>
 							<label class="switch">
 							<input type="checkbox" id="comp_sky_color" class="component-toggle">
 							</label>
-							<span class="material-symbols-rounded">more</span>
+							<span class="material-symbols-rounded"></span>
 						</h3>
 						<div id="sky_color-content" class="component-content">
 							<div class="menu-divider"></div>
@@ -1224,7 +1310,7 @@
 							<label class="switch">
 							<input type="checkbox" id="comp_water_appearance" class="component-toggle">
 							</label>
-							<span class="material-symbols-rounded">more</span>
+							<span class="material-symbols-rounded"></span>
 						</h3>
 						<div id="water_appearance-content" class="component-content">
 							<div class="menu-divider"></div>
@@ -1238,11 +1324,10 @@
 								</div>
 								<div class="form-group">
 									<label>Surface opacity (0.0–1.0)</label>
-									<input id="water_surface_opacity" type="number" min="0" max="1" step="0.01" value="1.0">
-								</div>
-								<div class="form-group">
-									<label>Water identifier (Vibrant Visuals)</label>
-									<input id="water_identifier" type="text" placeholder="namespace:water_definition">
+									<input id="water_surface_opacity" type="number" min="0" max="1" step="0.01" value="1.0" style="display:none;">
+<div class="custom-slider-replacement" data-target-id="water_surface_opacity" data-min-value="0.0" data-max-value="1.0" data-decimal-places="2" data-initial-value="1.0"></div>
+
+
 								</div>
 							</div>
 						</div>
@@ -1253,17 +1338,32 @@
 							<label class="switch">
 							<input type="checkbox" id="comp_fog" class="component-toggle">
 							</label>
-							<span class="material-symbols-rounded">more</span>
+							<span class="material-symbols-rounded"></span>
 						</h3>
 						<div id="fog_appearance-content" class="component-content">
-							<div class="menu-divider"></div>
-							<div style="margin: 25px;">
-								<div class="form-group">
-									<label>Fog identifier</label>
-									<input id="fog_identifier" type="text" placeholder="namespace:fog_definition">
-								</div>
-							</div>
-						</div>
+    <div class="menu-divider"></div>
+    <div style="margin: 25px;">
+        <div class="form-group">
+            <label>Fog Identifier</label>
+            <div style="display: flex; gap: 8px; align-items: center;">
+                <input id="fog_identifier" type="text" placeholder="namespace:fog_name" style="flex-grow: 1; margin-bottom: 0;">
+                
+                <button type="button" class="m3-icon-btn-small" id="btn_import_fog_file" title="Import Fog JSON File">
+                    <span class="material-symbols-rounded">file_open</span>
+                </button>
+                <input type="file" id="fog_file_input" accept=".json" style="display: none;">
+
+                <button type="button" class="m3-icon-btn-small" id="btn_open_fog_creator" title="Create/Edit Custom Fog">
+                    <span class="material-symbols-rounded">edit_square</span>
+                </button>
+            </div>
+            <div class="tooltip"><span class="material-symbols-rounded">question_mark</span>
+                <span class="tooltiptext">The namespaced identifier for the fog. Use the buttons to import or create a definition.</span>
+            </div>
+        </div>
+    </div>
+</div>
+
 					</div>
 					<div class="component-section">
 						<h3 class="collapsible-header collapsed" data-target="foliage_appearance-content">
@@ -1271,7 +1371,7 @@
 							<label class="switch">
 							<input type="checkbox" id="comp_foliage" class="component-toggle">
 							</label>
-							<span class="material-symbols-rounded">more</span>
+							<span class="material-symbols-rounded"></span>
 						</h3>
 						<div id="foliage_appearance-content" class="component-content">
 							<div class="menu-divider"></div>
@@ -1304,7 +1404,7 @@
 							<label class="switch">
 							<input type="checkbox" id="comp_grass" class="component-toggle">
 							</label>
-							<span class="material-symbols-rounded">more</span>
+							<span class="material-symbols-rounded"></span>
 						</h3>
 						<div id="grass_appearance-content" class="component-content">
 							<div class="menu-divider"></div>
@@ -1340,7 +1440,7 @@
 							<label class="switch">
 							<input type="checkbox" id="comp_dry_foliage" class="component-toggle">
 							</label>
-							<span class="material-symbols-rounded">more</span>
+							<span class="material-symbols-rounded"></span>
 						</h3>
 						<div id="dry_foliage_color-content" class="component-content">
 							<div class="menu-divider"></div>
@@ -1359,7 +1459,7 @@
 							</div>
 						</div>
 					</div>
-					<h3>Precipitation</h3>
+					
 					
 					<div class="component-section single">
 						<h3 class="collapsible-header collapsed" data-target="precipitation-content">
@@ -1367,7 +1467,7 @@
 							<label class="switch">
 								<input type="checkbox" id="comp_precip" class="component-toggle">
 							</label>
-							<span class="material-symbols-rounded">more</span>
+							<span class="material-symbols-rounded"></span>
 						</h3>
 						<div id="precipitation-content" class="component-content">
 							<div class="menu-divider"></div>
@@ -1418,88 +1518,57 @@
 							</div>
 						</div>
 					</div>
-					<h3>Vibrant Visuals Identifiers</h3>
 					
-					<div class="component-section start">
-						<h3 class="collapsible-header collapsed" data-target="atmosphere-content">
-							<span class="component-title">atmosphere</span>
-							<label class="switch">
-							<input type="checkbox" id="comp_atmosphere" class="component-toggle">
-							</label>
-							<span class="material-symbols-rounded">more</span>
-						</h3>
-						<div id="atmosphere-content" class="component-content">
-							<div class="menu-divider"></div>
-							<div style="margin: 25px;">
-								<div class="form-group">
-									<label>Atmosphere identifier</label>
-									<input id="atmosphere_identifier" type="text" placeholder="namespace:atmosphere_definition">
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="component-section">
-						<h3 class="collapsible-header collapsed" data-target="color_grading-content">
-							<span class="component-title">color_grading</span>
-							<label class="switch">
-							<input type="checkbox" id="comp_color_grading" class="component-toggle">
-							</label>
-							<span class="material-symbols-rounded">more</span>
-						</h3>
-						<div id="color_grading-content" class="component-content">
-							<div class="menu-divider"></div>
-							<div style="margin: 25px;">
-								<div class="form-group">
-									<label>Color grading identifier</label>
-									<input id="color_grading_identifier" type="text" placeholder="namespace:color_grading">
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="component-section">
-						<h3 class="collapsible-header collapsed" data-target="cubemap-content">
-							<span class="component-title">cubemap</span>
-							<label class="switch">
-							<input type="checkbox" id="comp_cubemap" class="component-toggle">
-							</label>
-							<span class="material-symbols-rounded">more</span>
-						</h3>
-						<div id="cubemap-content" class="component-content">
-							<div class="menu-divider"></div>
-							<div style="margin: 25px;">
-								<div class="form-group">
-									<label>Cubemap identifier</label>
-									<input id="cubemap_identifier" type="text" placeholder="namespace:cubemap_definition">
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="component-section end">
-						<h3 class="collapsible-header collapsed" data-target="lighting-content">
-							<span class="component-title">lighting</span>
-							<label class="switch">
-							<input type="checkbox" id="comp_lighting" class="component-toggle">
-							</label>
-							<span class="material-symbols-rounded">more</span>
-						</h3>
-						<div id="lighting-content" class="component-content">
-							<div class="menu-divider"></div>
-							<div style="margin: 25px;">
-								<div class="form-group">
-									<label>Lighting identifier</label>
-									<input id="lighting_identifier" type="text" placeholder="namespace:lighting_definition">
-								</div>
-							</div>
-						</div>
-					</div>
-					<h3>Music & Ambient</h3>
+<div class="component-section single">
+    <h3 class="collapsible-header collapsed" data-target="vibrant_visuals-content">
+        <span class="component-title">vibrant visuals identifiers</span>
+        <label class="switch">
+            <input type="checkbox" id="comp_vibrant_visuals" class="component-toggle">
+            
+        </label>
+        <span class="material-symbols-rounded"></span>
+    </h3>
+    <div id="vibrant_visuals-content" class="component-content">
+        <div class="menu-divider"></div>
+        <div style="margin: 25px;">
+            <p>Define identifiers for vibrant visual components. Leave fields empty to skip specific identifiers.</p>
+            
+            <div class="form-group">
+                <label>Atmosphere Identifier</label>
+                <input id="vibrant_atmosphere" type="text" placeholder="namespace:atmosphere_definition">
+            </div>
+
+            <div class="form-group">
+                <label>Color Grading Identifier</label>
+                <input id="vibrant_color_grading" type="text" placeholder="namespace:color_grading">
+            </div>
+
+            <div class="form-group">
+                <label>Cubemap Identifier</label>
+                <input id="vibrant_cubemap" type="text" placeholder="namespace:cubemap_definition">
+            </div>
+
+            <div class="form-group">
+                <label>Lighting Identifier</label>
+                <input id="vibrant_lighting" type="text" placeholder="namespace:lighting_definition">
+            </div>
+
+            <div class="form-group">
+                <label>Water Identifier</label>
+                <input id="vibrant_water" type="text" placeholder="namespace:water_definition">
+            </div>
+        </div>
+    </div>
+</div>
+
+					
 					<div class="component-section start">
 						<h3 class="collapsible-header collapsed" data-target="ambient_sounds-content">
 							<span class="component-title">ambient_sounds</span>
 							<label class="switch">
 							<input type="checkbox" id="comp_ambient" class="component-toggle">
 							</label>
-							<span class="material-symbols-rounded">more</span>
+							<span class="material-symbols-rounded"></span>
 						</h3>
 						<div id="ambient_sounds-content" class="component-content">
 							<div class="menu-divider"></div>
@@ -1514,7 +1583,9 @@
 								</div>
 								<div class="form-group">
 									<label>Addition (occasional) – chance</label>
-									<input id="ambient_add_chance" type="number" min="0" max="1" step="0.01" placeholder="chance 0.0–1.0">
+									<input id="ambient_add_chance" type="number" min="0" max="1" step="0.01" placeholder="chance 0.0–1.0" style="display:none;">
+<div class="custom-slider-replacement" data-target-id="ambient_add_chance" data-min-value="0.0" data-max-value="1.0" data-decimal-places="2" data-initial-value="0.0"></div>
+
 								</div>
 								<div class="form-group">
 									<label>Mood (rare, low-light) reference</label>
@@ -1535,7 +1606,9 @@
 									</div>
 									<div class="form-group">
 										<label>Underwater addition (chance)</label>
-										<input id="underwater_add_chance" type="number" min="0" max="1" step="0.01" placeholder="chance 0.0–1.0">
+										<input id="underwater_add_chance" type="number" min="0" max="1" step="0.01" placeholder="chance 0.0–1.0" style="display:none;">
+<div class="custom-slider-replacement" data-target-id="underwater_add_chance" data-min-value="0.0" data-max-value="1.0" data-decimal-places="2" data-initial-value="0.0"></div>
+
 									</div>
 									<div class="form-group">
 										<label>Underwater loop</label>
@@ -1555,7 +1628,7 @@
 							<label class="switch">
 							<input type="checkbox" id="comp_music" class="component-toggle">
 							</label>
-							<span class="material-symbols-rounded">more</span>
+							<span class="material-symbols-rounded"></span>
 						</h3>
 						<div id="biome_music-content" class="component-content">
 							<div class="menu-divider"></div>
@@ -1566,7 +1639,10 @@
 								</div>
 								<div class="form-group">
 									<label>Volume multiplier (0–1)</label>
-									<input id="music_volume" type="number" min="0" max="1" step="0.01" value="1.0">
+									<input id="music_volume" type="number" min="0" max="1" step="0.01" value="1.0" style="display:none;">
+<div class="custom-slider-replacement" data-target-id="music_volume" data-min-value="0.0" data-max-value="1.0" data-decimal-places="2" data-initial-value="1.0"></div>
+
+
 								</div>
 								<div class="form-group">
 									<label>Enable underwater music?</label>
@@ -1636,6 +1712,148 @@
         </div>
     </div>
 </div>
+
+<div id="fogCreatorModalOverlay" class="modal-overlay" style="display: none;">
+    <div class="modal-box" style="width: 95%; max-width: 900px; height: 90vh; display: flex; flex-direction: column; padding: 0;">
+        
+        <div class="m3-modal-header" style="padding: 20px 24px; border-bottom: 1px solid var(--md-sys-color-outline-variant);">
+            <div style="display: flex; align-items: center; gap: 12px;">
+                <span class="material-symbols-rounded" style="color: var(--md-sys-color-primary); font-size: 28px;">cloud_circle</span>
+                <h3 style="margin: 0; font-size: 1.4rem;">Fog Creator</h3>
+            </div>
+            <button type="button" id="btn_fog_import_json" class="m3-text-button" style="padding: 0 12px;">
+                <span class="material-symbols-rounded" style="font-size: 18px; margin-right: 6px;">upload_file</span>
+                Import JSON
+            </button>
+            <input type="file" id="fog_creator_import_input" accept=".json" style="display: none;">
+        </div>
+
+        <div style="display: flex; flex-grow: 1; overflow: hidden;">
+            
+            <div class="fog-sidebar" style="width: 200px; background: var(--md-sys-color-surface-container-low); border-right: 1px solid var(--md-sys-color-outline-variant); overflow-y: auto; padding: 10px 0;">
+                <div class="fog-tab active" data-tab="general">General Info</div>
+                <div class="menu-divider"></div>
+                <div class="fog-tab-header">Distance Fog</div>
+                <div class="fog-tab" data-tab="air">Air</div>
+                <div class="fog-tab" data-tab="water">Water</div>
+                <div class="fog-tab" data-tab="weather">Weather</div>
+                <div class="fog-tab" data-tab="lava">Lava</div>
+                <div class="fog-tab" data-tab="lava_resistance">Lava Resistance</div>
+                <div class="fog-tab" data-tab="powder_snow">Powder Snow</div>
+            </div>
+
+            <div class="fog-form-content" style="flex-grow: 1; padding: 24px; overflow-y: auto;">
+                
+                <div id="tab_content_general" class="fog-tab-content" style="display: block;">
+                    <h4>General Definition</h4>
+                    <p style="color: var(--md-sys-color-on-surface-variant); font-size: 0.9em; margin-bottom: 20px;">
+                        Basic metadata for your fog file.
+                    </p>
+                    <div class="form-group">
+                        <label class="required-field">Fog Identifier (namespace:name)</label>
+                        <input type="text" id="fog_form_id" placeholder="example:my_custom_fog">
+                    </div>
+                </div>
+
+                <div id="fog_distance_container" style="display: none;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                        <h4 id="fog_dist_title" style="margin: 0; text-transform: capitalize;">Air Fog</h4>
+                        
+                        <div class="switch-container" style="margin: 0;">
+                            <label for="fog_dist_enable" style="margin-right: 10px;">Enable</label>
+                            <label class="switch">
+                                <input type="checkbox" id="fog_dist_enable">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div id="fog_dist_fields">
+                        <div class="form-group">
+                            <label>Fog Color</label>
+                            <div class="color-input-group">
+                                <input type="text" id="fog_dist_color_text" class="color-input-text" placeholder="#RRGGBB">
+                                <input type="color" id="fog_dist_color_picker" class="color-input-picker">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Fog Start (Distance)</label>
+                            <input type="number" id="fog_dist_start" step="0.1" placeholder="e.g. 0.0">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Fog End (Distance)</label>
+                            <input type="number" id="fog_dist_end" step="0.1" placeholder="e.g. 64.0">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Render Distance Type</label>
+                            <select id="fog_dist_type">
+                                <option value="render">Render (Dynamic based on user settings)</option>
+                                <option value="fixed">Fixed (Blocks)</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div id="fog_dist_disabled_msg" style="display: none; text-align: center; color: var(--md-sys-color-outline); padding: 40px;">
+                        <span class="material-symbols-rounded" style="font-size: 48px; opacity: 0.5;">visibility_off</span>
+                        <p>This fog type is disabled.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="m3-modal-footer" style="border-top: 1px solid var(--md-sys-color-outline-variant); padding: 16px 24px; display: flex; align-items: center;">
+            
+            <button id="btn_fog_export_file" class="m3-modal-btn m3-btn-text" style="margin-right: auto; display: flex; align-items: center; gap: 8px;">
+                <span class="material-symbols-rounded">download</span> Download JSON
+            </button>
+
+            <button id="btn_fog_cancel" class="m3-modal-btn m3-btn-text">Cancel</button>
+            <button id="btn_fog_save_memory" class="m3-modal-btn m3-btn-filled">Okay</button>
+        </div>
+    </div>
+</div>
+
+<div id="decorationModalOverlay" class="modal-overlay" style="display: none;">
+    <div class="modal-box" style="width: 90%; max-width: 900px; height: 85vh; display: flex; flex-direction: column; padding: 0;">
+        
+        <div class="m3-modal-header" style="padding: 16px 24px; border-bottom: 1px solid var(--md-sys-color-outline-variant); display: flex; align-items: center; justify-content: space-between;">
+            <div style="display: flex; align-items: center; gap: 12px;">
+                <span class="material-symbols-rounded" style="color: var(--md-sys-color-primary);">extension</span>
+                <h3 style="margin: 0; font-size: 1.3rem;">Decoration Library</h3>
+            </div>
+            <div class="search-container" style="position: relative; width: 250px;">
+                <span class="material-symbols-rounded" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: var(--md-sys-color-outline); font-size: 20px;">search</span>
+                <input type="text" id="decoration_search" placeholder="Search items..." style="width: 100%; padding: 8px 8px 8px 36px; border-radius: 20px; border: 1px solid var(--md-sys-color-outline); background: var(--md-sys-color-surface);">
+            </div>
+        </div>
+
+        <div style="display: flex; flex-grow: 1; overflow: hidden;">
+            <div id="decoration_categories" class="fog-sidebar" style="width: 220px; background: var(--md-sys-color-surface-container-low); border-right: 1px solid var(--md-sys-color-outline-variant); overflow-y: auto; padding: 10px 0;">
+                </div>
+
+            <div id="decoration_items_container" class="fog-form-content" style="flex-grow: 1; padding: 0; overflow-y: auto; background: var(--md-sys-color-surface);">
+                <div id="decoration_empty_state" style="display:none; text-align: center; padding: 50px; color: var(--md-sys-color-outline);">
+                    <span class="material-symbols-rounded" style="font-size: 48px; opacity: 0.5;">search_off</span>
+                    <p>No matching presets found.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="m3-modal-footer" style="border-top: 1px solid var(--md-sys-color-outline-variant); padding: 12px 24px; display: flex; justify-content: space-between; align-items: center;">
+            <div style="font-size: 0.9rem; color: var(--md-sys-color-primary);">
+                <span id="decoration_total_counter" style="font-weight: bold;">0</span> items selected
+            </div>
+            <button id="btn_close_decorations" class="m3-modal-btn m3-btn-filled">Done</button>
+        </div>
+    </div>
+</div>
+
+
+
 <!-- END ADDED -->
 
 		<script src="jszip.min.js" crossorigin="anonymous"></script>
@@ -2052,7 +2270,7 @@
 			
 async function processMultiExport() {
     const packNameInput = document.getElementById('mcpackNameInput');
-    const packName = packNameInput.value.trim() || `BiBuild Multi-Biome Pack`;
+    const packName = packNameInput.value.trim() || `Wanxian Multi-Biome Pack`;
     
     const allPresets = getPresets();
     const presetsToProcess = [];
@@ -2135,7 +2353,7 @@ async function processMultiExport() {
         "format_version": 2,
         "header": {
             "name": `${packName} BP`,
-            "description": `Contains ${addedServerCount} biomes. Generated by BiBuild.`,
+            "description": `Contains ${addedServerCount} biomes. Generated by Wanxian.`,
             "uuid": bpHeaderUuid,
             "version": [1, 0, 0],
             "min_engine_version": [1, 21, 90]
@@ -2148,7 +2366,7 @@ async function processMultiExport() {
         "format_version": 2,
         "header": {
             "name": `${packName} RP`,
-            "description": `Contains ${addedClientCount} client biomes. Generated by BiBuild.`,
+            "description": `Contains ${addedClientCount} client biomes. Generated by Wanxian.`,
             "uuid": rpHeaderUuid,
             "version": [1, 0, 0],
             "min_engine_version": [1, 21, 90]
@@ -2237,7 +2455,13 @@ async function processMultiExport() {
 			        "minecraft:savanna_plateau", "minecraft:savanna", "minecraft:snowy_slopes",
 			        "minecraft:stone_beach", "minecraft:stony_peaks", "minecraft:sunflower_plains",
 			        "minecraft:swampland_mutated", "minecraft:swampland", "minecraft:taiga_hills",
-			        "minecraft:taiga_mutated", "minecraft:taiga", "minecraft:warm_ocean"
+			        "minecraft:taiga_mutated", "minecraft:taiga", "minecraft:warm_ocean",
+			      "minecraft:warped_forest",
+			      "minecraft:the_end",
+			      "minecraft:soulsand_valley",
+			      "minecraft:crimson_forest",
+			      "minecraft:hell",
+			      "minecraft:basalt_deltas"
 			    ];
 			
 			    const BIOME_TAGS = [
@@ -2608,13 +2832,24 @@ async function processMultiExport() {
 			
 			        div.innerHTML = `
 			            <h4>Replacement Rule</h4>
-			            <div class="form-group">
-			                <label for="${uniqueId}dimension" class="required-field">Dimension (String):</label>
-			                <input type="text" id="${uniqueId}dimension" value="${dimension}" required>
-			                <div class="tooltip"><span class="material-symbols-rounded">question_mark</span>
-			                    <span class="tooltiptext">Dimension in which this replacement can happen. e.g., 'minecraft:overworld'.</span>
-			                </div>
-			            </div>
+			                                    <div class="form-group">
+                <label class="required-field">Target Dimension:</label>
+                <div class="radio-group">
+                    <label class="radio-container">Overworld
+                        <input type="radio" name="${uniqueId}dimension" value="minecraft:overworld" ${dimension === 'minecraft:overworld' ? 'checked' : ''}>
+                        <span class="radio-checkmark"></span>
+                    </label>
+                    <label class="radio-container">Nether
+                        <input type="radio" name="${uniqueId}dimension" value="minecraft:nether" ${dimension === 'minecraft:nether' ? 'checked' : ''}>
+                        <span class="radio-checkmark"></span>
+                    </label>
+                </div>
+                <div class="tooltip"><span class="material-symbols-rounded">question_mark</span>
+                    <span class="tooltiptext">Dimension in which this replacement can happen. Must be 'minecraft:overworld' or 'minecraft:nether'.</span>
+                </div>
+            </div>
+
+
 			            <div class="form-group">
 			                <label for="${uniqueId}amount" class="required-field">Amount (Float, 0.0 - 1.0]:</label>
 			                <input type="number" step="any" min="0.001" max="1.0" id="${uniqueId}amount" placeholder="e.g., 0.7" value="${amount}" required>
@@ -3020,8 +3255,21 @@ async function processMultiExport() {
 			                        }
 			                        break;
 			                    case 'minecraft:creature_spawn_probability':
-			                        if (typeof componentData.probability === 'number') document.getElementById('creature_spawn_probability_value').value = componentData.probability;
-			                        break;
+    if (typeof componentData.probability === 'number') {
+        const el = document.getElementById('creature_spawn_probability_value');
+        el.value = componentData.probability;
+        if(el.updateSliderUI) el.updateSliderUI(); // Force slider update
+    }
+    break;
+    
+// ADD THIS BLOCK AFTER THE PREVIOUS COMPONENT:
+case 'minecraft:village_type':
+    if (typeof componentData.type === 'string') {
+        document.getElementById('enable_village_type').checked = true;
+        document.getElementById('village_type_select').value = componentData.type;
+    }
+    break;
+
 			                    case 'minecraft:humidity':
 			                        if (typeof componentData.is_humid === 'boolean') document.getElementById('humidity_is_humid').checked = componentData.is_humid;
 			                        break;
@@ -3218,6 +3466,12 @@ if (!idPattern.test(identifier)) {
 			            const probability = parseFloat(document.getElementById('creature_spawn_probability_value').value);
 			            if (!isNaN(probability)) components['minecraft:creature_spawn_probability'] = { probability: probability };
 			        }
+			        
+// ADD THIS BLOCK AFTER THE PREVIOUS COMPONENT:
+if (document.getElementById('enable_village_type').checked) {
+    const villageType = document.getElementById('village_type_select').value;
+    components['minecraft:village_type'] = { type: villageType };
+}
 			        if (document.getElementById('enable_humidity').checked) {
 			            components['minecraft:humidity'] = { is_humid: document.getElementById('humidity_is_humid').checked };
 			        }
@@ -3326,7 +3580,9 @@ if (!idPattern.test(identifier)) {
 			        if (document.getElementById('enable_replace_biomes').checked) {
 			            const replacements = [];
 			            document.querySelectorAll('#replacements_list_container > .dynamic-item').forEach(item => {
-			                const dimension = item.querySelector('input[id$="dimension"]').value.trim();
+			                const dimensionObj = item.querySelector('input[name*="dimension"]:checked');
+const dimension = dimensionObj ? dimensionObj.value : "minecraft:overworld";
+
 			                const amount = parseFloat(item.querySelector('input[id$="amount"]').value);
 			                const scale = parseFloat(item.querySelector('input[id$="noise_freq_scale"]').value);
 			                const targets = Array.from(item.querySelector('select[id$="targets_select"]').selectedOptions).map(o => o.value);
@@ -3432,9 +3688,29 @@ if (!idPattern.test(identifier)) {
 			            if (adjustments.length > 0) components['minecraft:surface_material_adjustments'] = { adjustments: adjustments };
 			        }
 			        if (document.getElementById('enable_tags').checked) {
-			            const selectedPredefined = Array.from(document.getElementById('biome_tags_select').selectedOptions).map(o => o.value);
-			            const allTags = [...new Set([...selectedPredefined, ...customTags])].sort();
-			            if (allTags.length > 0) components['minecraft:tags'] = { tags: allTags };
+			                    // --- TAGS COMPONENT FIX ---
+        // 1. Get Manual Custom Tags (safely)
+        const manualTags = (typeof customTags !== 'undefined') ? Array.from(customTags) : [];
+        
+        // 2. Get Decorative Preset Tags (from the new system)
+        const presetTags = (typeof window.getDecorationTags === 'function') ? window.getDecorationTags() : [];
+        
+        // 3. Get Predefined Tags (from dropdown)
+        const isTagsEnabled = document.getElementById('enable_tags').checked;
+        const predefinedTags = isTagsEnabled 
+            ? Array.from(document.getElementById('biome_tags_select').selectedOptions).map(o => o.value)
+            : [];
+
+        // 4. Merge All Tags
+        // We combine them if "Tags" is enabled OR if we have preset tags to add
+        if (isTagsEnabled || presetTags.length > 0) {
+            const allTags = [...new Set([...predefinedTags, ...manualTags, ...presetTags])].sort();
+            
+            if (allTags.length > 0) {
+                components['minecraft:tags'] = { tags: allTags };
+            }
+        }
+
 			        }
 			        return biomeJson;
 			    }
@@ -3552,10 +3828,10 @@ if (!idPattern.test(identifier)) {
 			                return;
 			            }
 			            const zip = new JSZip();
-			            const packName = `BiBuild Pack-${Math.floor(Math.random() * 0xFFFFFF).toString(16).padStart(6, '0')}`;
+			            const packName = `Wanxian Pack-${Math.floor(Math.random() * 0xFFFFFF).toString(16).padStart(6, '0')}`;
 			            const manifestJson = {
 			                "format_version": 2,
-			                "header": { "name": packName, "description": "Generated by BiBuild.", "uuid": generateUuidv4(), "version": [1, 0, 0], "min_engine_version": [1, 21, 90] },
+			                "header": { "name": packName, "description": "Generated by Wanxian.", "uuid": generateUuidv4(), "version": [1, 0, 0], "min_engine_version": [1, 21, 90] },
 			                "modules": [{ "type": "data", "uuid": generateUuidv4(), "version": [1, 0, 0] }]
 			            };
 			            try {
@@ -3830,7 +4106,7 @@ if (!idPattern.test(identifier)) {
         <div class="component-section start">
             <h3 class="collapsible-header" data-target="server-biome-content">
                 <span class="component-title">Biome (Server)</span>
-                <span class="material-symbols-rounded">more</span>
+                <span class="material-symbols-rounded"></span>
             </h3>
             <div id="server-biome-content" class="component-content">
                 <div class="menu-divider"></div>
@@ -3865,7 +4141,7 @@ if (!idPattern.test(identifier)) {
         <div class="component-section end">
             <h3 class="collapsible-header" data-target="client-biome-content">
                 <span class="component-title">Client Biome</span>
-                <span class="material-symbols-rounded">more</span>
+                <span class="material-symbols-rounded"></span>
             </h3>
             <div id="client-biome-content" class="component-content">
                 <div class="menu-divider"></div>
@@ -3945,156 +4221,173 @@ height: 250px; overflow: auto;"></pre>
 				</div>
 			</div>
 		</div>
-		<script>
-			const allSheets = [document.getElementById("generateSheet"), document.getElementById("manageSheet")];
-			const allButtons = [document.getElementById("generateBtn"), document.getElementById("manageBtn")];
-			const dragHandles = document.querySelectorAll('.drag-handle');
-			
-			let startY = 0;
-			let currentSheet = null;
-			let currentHandle = null; 
-			const TRANSITION_STYLE = 'transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1.0)';
-			
-			// --- Core Drawer/Button Toggle Logic ---
-			
-			function closeAllSheets() {
-			  allSheets.forEach(sheet => {
-			    // Check if sheet exists before trying to access properties
-			    if (sheet) {
-			      sheet.classList.remove("active");
-			      sheet.style.transform = 'translateY(100%)'; 
-			    }
-			  });
-			  // FIX: Explicitly remove active state from all buttons to prevent 'stuck' state
-			  allButtons.forEach(btn => btn.classList.remove("active"));
-			}
-			
-			function handleToggle(clickedButton, associatedSheet) {
-			    const isActive = clickedButton.classList.contains("active");
-			    closeAllSheets(); 
-			
-			    if (!isActive) {
-			        associatedSheet.style.transform = 'translateY(0)'; 
-			        clickedButton.classList.add("active");
-			        associatedSheet.classList.add("active");
-			    }
-			}
-			
-			// --- Event Listeners for Buttons and Scrim Click (Unchanged) ---
-			
-			allButtons.forEach(button => {
-			    button.addEventListener("click", (e) => {
-			        e.preventDefault();
-			        const sheetId = button.getAttribute('data-drawer');
-			        const sheet = document.getElementById(sheetId);
-			        handleToggle(button, sheet);
-			    });
-			});
-			
-			document.addEventListener("click", (e) => {
-			  if (!e.target.closest(".bottom-sheet") && 
-			      !e.target.closest(".fab-container")) {
-			    closeAllSheets();
-			  }
-			});
-			
-			// --- DRAG HANDLE FUNCTIONALITY (FIXED & CLEANED) ---
-			
-			function preventDefaultTouch(e) {
-			    e.preventDefault();
-			}
-			
-			function cleanupListeners() {
-			    document.removeEventListener('mousemove', dragMove);
-			    document.removeEventListener('touchmove', dragMove);
-			    document.removeEventListener('mouseup', dragEnd);
-			    document.removeEventListener('touchend', dragEnd);
-			    
-			    if (currentHandle) {
-			        currentHandle.removeEventListener('touchmove', preventDefaultTouch);
-			    }
-			    
-			    currentSheet = null; 
-			    currentHandle = null;
-			}
-			
-			
-			function dragStart(e) {
-			    currentHandle = e.currentTarget; 
-			    const sheetId = currentHandle.dataset.drawer;
-			    currentSheet = document.getElementById(sheetId);
-			    if (!currentSheet || !currentSheet.classList.contains('active')) return;
-			    
-			    startY = e.touches ? e.touches[0].clientY : e.clientY;
-			    currentSheet.style.transition = 'none';
-			    
-			    document.addEventListener('mousemove', dragMove);
-			    document.addEventListener('touchmove', dragMove);
-			    document.addEventListener('mouseup', dragEnd);
-			    document.addEventListener('touchend', dragEnd);
-			    
-			    if (e.type === 'touchstart') {
-			        currentHandle.addEventListener('touchmove', preventDefaultTouch, { passive: false });
-			    }
-			}
-			
-			function dragMove(e) {
-			    if (!currentSheet) return;
-			
-			    const currentY = e.touches ? e.touches[0].clientY : e.clientY;
-			    let deltaY = currentY - startY;
-			    
-			    if (deltaY < 0) {
-			        deltaY = 0;
-			    }
-			
-			    currentSheet.style.transform = `translateY(${deltaY}px)`;
-			}
-			
-			function dragEnd(e) {
-			    // 1. Initial Check: Exit immediately if currentSheet is null
-			    if (!currentSheet) {
-			        cleanupListeners(); // Ensure listeners are removed if somehow called without a sheet
-			        return;
-			    }
-			    
-			    // Use a local reference to the sheet before cleanup, if needed later
-			    const sheetToClose = currentSheet; 
-			
-			    // 2. Re-enable transition
-			    sheetToClose.style.transition = TRANSITION_STYLE;
-			
-			    // 3. Calculate drag distance
-			    const finalY = e.changedTouches ? e.changedTouches[0].clientY : e.clientY;
-			    const deltaY = finalY - startY;
-			    
-			    const closeThreshold = sheetToClose.offsetHeight * 0.25;
-			
-			    if (deltaY > closeThreshold) {
-			        // Dragged far enough: Trigger smooth close
-			        sheetToClose.style.transform = 'translateY(100%)'; 
-			        
-			        // 4. Cleanup after transition (400ms)
-			        setTimeout(() => {
-			            // FIX: Use the shared closeAllSheets function which handles the classList removal safely
-			            closeAllSheets(); 
-			        }, 400); 
-			        
-			    } else {
-			        // Snap back to open position
-			        sheetToClose.style.transform = 'translateY(0)';
-			    }
-			
-			    // 5. Cleanup Listeners and reset references IMMEDIATELY after deciding snap/close
-			    cleanupListeners();
-			}
-			
-			// Attach listeners
-			dragHandles.forEach(handle => {
-			    handle.addEventListener('mousedown', dragStart);
-			    handle.addEventListener('touchstart', dragStart, { passive: false }); 
-			});
-		</script>
+<script>
+    const allSheets = [document.getElementById("generateSheet"), document.getElementById("manageSheet")];
+    const allButtons = [document.getElementById("generateBtn"), document.getElementById("manageBtn")];
+    const draggableSheets = document.querySelectorAll('.bottom-sheet');
+    
+    let startY = 0;
+    let currentSheet = null;
+    let isDraggingSheet = false;
+    let isGestureLockedToContent = false; // New flag to lock scroll mode
+    const TRANSITION_STYLE = 'transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1.0)';
+    
+    // --- Core Toggle Logic ---
+    function closeAllSheets() {
+      allSheets.forEach(sheet => {
+        if (sheet) {
+          sheet.classList.remove("active");
+          sheet.style.transform = 'translateY(100%)'; 
+          sheet.style.cursor = '';
+        }
+      });
+      allButtons.forEach(btn => btn.classList.remove("active"));
+    }
+    
+    function handleToggle(clickedButton, associatedSheet) {
+        const isActive = clickedButton.classList.contains("active");
+        closeAllSheets(); 
+        if (!isActive) {
+            associatedSheet.style.transform = 'translateY(0)'; 
+            clickedButton.classList.add("active");
+            associatedSheet.classList.add("active");
+        }
+    }
+    
+    allButtons.forEach(button => {
+        button.addEventListener("click", (e) => {
+            e.preventDefault();
+            handleToggle(button, document.getElementById(button.getAttribute('data-drawer')));
+        });
+    });
+
+    document.addEventListener("click", (e) => {
+      if (!e.target.closest(".bottom-sheet") && !e.target.closest(".fab-container")) {
+        closeAllSheets();
+      }
+    });
+    
+    // --- SMART DRAG FUNCTIONALITY (SCROLL LOCK FIX) ---
+    
+    // Helper: Checks if the target element OR any of its parents are currently scrolled down.
+    function isAnyAncestorScrolled(target) {
+        let el = target;
+        while (el && el !== currentSheet && !el.classList.contains('bottom-sheet')) {
+            if (el.scrollTop > 0) {
+                return true;
+            }
+            el = el.parentElement;
+        }
+        return false;
+    }
+
+    function cleanupListeners() {
+        document.removeEventListener('mousemove', dragMove);
+        document.removeEventListener('touchmove', dragMove);
+        document.removeEventListener('mouseup', dragEnd);
+        document.removeEventListener('touchend', dragEnd);
+        currentSheet = null; 
+        isDraggingSheet = false;
+        // Do not reset isGestureLockedToContent here, it resets on next dragStart
+    }
+    
+    function dragStart(e) {
+        const target = e.target.closest('.bottom-sheet');
+        if (!target || !target.classList.contains('active')) return;
+
+        if (e.target.closest('input[type="range"], .slider, button, .switch, input, select')) {
+            return;
+        }
+
+        // 1. STATE LOCK:
+        // If we start the gesture on content that is scrolled down, we LOCK this gesture 
+        // to "content scrolling mode". We will NOT allow the sheet to drag close 
+        // during this specific swipe, even if it hits the top.
+        if (isAnyAncestorScrolled(e.target)) {
+            isGestureLockedToContent = true;
+        } else {
+            isGestureLockedToContent = false;
+        }
+
+        currentSheet = target;
+        startY = e.touches ? e.touches[0].clientY : e.clientY;
+        isDraggingSheet = true;
+        currentSheet.style.transition = 'none';
+        
+        document.addEventListener('mousemove', dragMove);
+        document.addEventListener('touchmove', dragMove, { passive: false });
+        document.addEventListener('mouseup', dragEnd);
+        document.addEventListener('touchend', dragEnd);
+    }
+    
+    function dragMove(e) {
+        if (!currentSheet || !isDraggingSheet) return;
+    
+        // 2. CHECK LOCK:
+        // If we locked this gesture to content scrolling earlier, stop here.
+        // This lets the browser handle the scroll naturally without moving the sheet.
+        if (isGestureLockedToContent) {
+            return; 
+        }
+
+        const currentY = e.touches ? e.touches[0].clientY : e.clientY;
+        const deltaY = currentY - startY;
+        
+        // 3. Direction Check:
+        // If moving UP (scrolling down), let browser handle it.
+        if (deltaY < 0) {
+            return;
+        }
+
+        // 4. Dynamic Check (Edge Case):
+        // If we started at 0, scrolled down, and are now back at 0...
+        // We double check if content is scrolled to avoid yanking.
+        if (isAnyAncestorScrolled(e.target)) {
+            return;
+        }
+
+        // If we passed all checks, we are dragging the sheet down.
+        if (e.cancelable) e.preventDefault(); 
+
+        if(deltaY > 0) currentSheet.style.cursor = 'grabbing';
+        
+        let transformY = deltaY;
+        if (transformY < 0) transformY = 0;
+
+        currentSheet.style.transform = `translateY(${transformY}px)`;
+    }
+    
+    function dragEnd(e) {
+        if (!currentSheet) {
+            cleanupListeners();
+            return;
+        }
+        
+        const sheetToClose = currentSheet;
+        sheetToClose.style.transition = TRANSITION_STYLE;
+    
+        const finalY = e.changedTouches ? e.changedTouches[0].clientY : e.clientY;
+        const deltaY = finalY - startY;
+        
+        // Close if dragged down significantly AND we weren't locked to content
+        if (!isGestureLockedToContent && deltaY > 100) {
+            sheetToClose.style.transform = 'translateY(100%)'; 
+            setTimeout(() => closeAllSheets(), 400); 
+        } else {
+            sheetToClose.style.transform = 'translateY(0)';
+        }
+    
+        cleanupListeners();
+    }
+    
+    draggableSheets.forEach(sheet => {
+        sheet.addEventListener('mousedown', dragStart);
+        sheet.addEventListener('touchstart', dragStart, { passive: false }); 
+    });
+</script>
+
+
+
 		<script>
 			const biomeForm = document.getElementById('biomeForm');
 			const generateBtn = document.getElementById('generateBtn');
@@ -4331,28 +4624,31 @@ height: 250px; overflow: auto;"></pre>
 			const hide = (el) => el.style.display = 'none';
 			
 			/* Toggle controls */
-			[
-			  ['comp_sky_color','sky_controls'],
-			  ['comp_water_appearance','water_controls'],
-			  ['comp_fog','fog_controls'],
-			  ['comp_foliage','foliage_controls'],
-			  ['comp_grass','grass_controls'],
-			  ['comp_atmosphere','atmosphere_controls'],
-			  ['comp_color_grading','color_grading_controls'],
-			  ['comp_cubemap','cubemap_controls'],
-			  ['comp_lighting','lighting_controls'],
-			  ['comp_precip','precip_controls'],
-			  ['comp_ambient','ambient_controls'],
-			  ['comp_underwater_ambient','underwater_ambient_block'],
-			  ['comp_music','music_controls'],
-			  ['comp_dry_foliage','dry_foliage_controls'],
-			].forEach(pair=>{
-			  const cb = $(pair[0]); const body = $(pair[1]);
-			  if(!cb || !body) return;
-			  cb.addEventListener('change', ()=> {
-			    if(cb.checked) show(body); else hide(body);
-			  });
-			});
+/* Toggle controls */
+[
+  ['comp_sky_color','sky_controls'], // Note: 'sky_controls' usually refers to the ID of the content div if you named them that way, or use the logic below
+  ['comp_sky_color','sky_color-content'], 
+  ['comp_water_appearance','water_appearance-content'],
+  ['comp_fog','fog_appearance-content'],
+  ['comp_foliage','foliage_appearance-content'],
+  ['comp_grass','grass_appearance-content'],
+  ['comp_vibrant_visuals', 'vibrant_visuals-content'], // NEW
+  ['comp_precip','precipitation-content'],
+  ['comp_ambient','ambient_sounds-content'],
+  ['comp_underwater_ambient','underwater_ambient_block'],
+  ['comp_music','biome_music-content'],
+  ['comp_dry_foliage','dry_foliage_color-content'],
+].forEach(pair=>{
+  const cb = $(pair[0]); const body = $(pair[1]);
+  if(!cb || !body) return;
+  // Initialize state based on checkbox
+  if(cb.checked) show(body); else hide(body);
+  
+  cb.addEventListener('change', ()=> {
+    if(cb.checked) show(body); else hide(body);
+  });
+});
+
 			
 			/* precipitation mode */
 			$('precip_mode').addEventListener('change', (e)=>{
@@ -4399,12 +4695,6 @@ height: 250px; overflow: auto;"></pre>
 			    if(!isNaN(opa)) obj["surface_opacity"] = opa;
 			    if(Object.keys(obj).length) comps["minecraft:water_appearance"] = obj;
 			  }
-			  if($('comp_water_appearance').checked && $('water_identifier').value.trim()){
-			    // docs separate water_identifier component
-			    comps["minecraft:water_identifier"] = { "water_identifier": $('water_identifier').value.trim() };
-			  } else if($('comp_water_appearance').checked && $('water_identifier').value.trim()===""){
-			    // nothing
-			  }
 			
 			  /* fog_appearance */
 			  if($('comp_fog').checked){
@@ -4445,26 +4735,24 @@ height: 250px; overflow: auto;"></pre>
 			  }
 			
 			  /* vibrant visuals identifiers */
-			  if($('comp_atmosphere').checked){
-			    const a = $('atmosphere_identifier').value.trim();
-			    if(!a) throw "atmosphere_identifier enabled but empty.";
-			    comps["minecraft:atmosphere_identifier"] = { "atmosphere_identifier": a };
-			  }
-			  if($('comp_color_grading').checked){
-			    const c = $('color_grading_identifier').value.trim();
-			    if(!c) throw "color_grading_identifier enabled but empty.";
-			    comps["minecraft:color_grading_identifier"] = { "color_grading_identifier": c };
-			  }
-			  if($('comp_cubemap').checked){
-			    const c = $('cubemap_identifier').value.trim();
-			    if(!c) throw "cubemap_identifier enabled but empty.";
-			    comps["minecraft:cubemap_identifier"] = { "cubemap_identifier": c };
-			  }
-			  if($('comp_lighting').checked){
-			    const c = $('lighting_identifier').value.trim();
-			    if(!c) throw "lighting_identifier enabled but empty.";
-			    comps["minecraft:lighting_identifier"] = { "lighting_identifier": c };
-			  }
+  /* Vibrant Visuals (Unified) */
+  if($('comp_vibrant_visuals').checked){
+    const atmo = $('vibrant_atmosphere').value.trim();
+    if(atmo) comps["minecraft:atmosphere_identifier"] = { "atmosphere_identifier": atmo };
+
+    const grade = $('vibrant_color_grading').value.trim();
+    if(grade) comps["minecraft:color_grading_identifier"] = { "color_grading_identifier": grade };
+
+    const cube = $('vibrant_cubemap').value.trim();
+    if(cube) comps["minecraft:cubemap_identifier"] = { "cubemap_identifier": cube };
+
+    const light = $('vibrant_lighting').value.trim();
+    if(light) comps["minecraft:lighting_identifier"] = { "lighting_identifier": light };
+
+    const water = $('vibrant_water').value.trim();
+    if(water) comps["minecraft:water_identifier"] = { "water_identifier": water };
+  }
+
 			
 			  /* precipitation */
 			  if($('comp_precip').checked){
@@ -4703,16 +4991,22 @@ $('downloadClientMcpackButton').addEventListener('click', async () => {
     const cleanName = namePart.replace(/[^a-z0-9._-]/g, '_').toLowerCase();
     // 3. Construct filename
     const fileName = `${cleanName}.client_biome.json`;
+    
+
+
 
     const zip = new JSZip();
-    const packName = `BiBuild Client Pack-${Math.floor(Math.random() * 0xFFFFFF).toString(16).padStart(6, '0')}`;
+    const packName = `Wanxian Client Pack-${Math.floor(Math.random() * 0xFFFFFF).toString(16).padStart(6, '0')}`;
+    
+        // Add Custom Fogs
+
 
     // Create a RESOURCE PACK manifest
     const manifestJson = {
         "format_version": 2,
         "header": {
             "name": packName,
-            "description": "Client biome resource pack generated by BiBuild.",
+            "description": "Client biome resource pack generated by Wanxian.",
             "uuid": generateUuidv4(),
             "version": [1, 0, 0],
             "min_engine_version": [1, 21, 90]
@@ -4768,16 +5062,24 @@ $('downloadClientMcpackButton').addEventListener('click', async () => {
 			/* done earlier */
 			
 		</script>
-		<script>
+				<script>
 			document.addEventListener('DOMContentLoaded', () => {
 			  const checkbox = document.getElementById('enable_clientbiomes');
 			  const hiddenContainer = document.getElementById('hidden-container');
 			
-			  checkbox.addEventListener('change', () => {
+			  // Define the update logic
+			  const updateVisibility = () => {
 			    hiddenContainer.style.display = checkbox.checked ? 'block' : 'none';
-			  });
+			  };
+			
+			  // Listen for changes
+			  checkbox.addEventListener('change', updateVisibility);
+			  
+			  // Run once immediately to handle the "clientbiomes=on" query param
+			  updateVisibility();
 			});
 		</script>
+
 		<script>
 document.addEventListener('DOMContentLoaded', () => {
     // This function makes the new "Biome (Server)" and "Client Biome" headers clickable
@@ -4873,15 +5175,13 @@ function populateClientForm(data) {
             toggleComp('comp_water_appearance', true);
             const wa = comps['minecraft:water_appearance'];
             setColor('water_surface_color_text', 'water_surface_color', wa.surface_color);
-            setVal('water_surface_opacity', wa.surface_opacity);
+            const el_opa = document.getElementById('water_surface_opacity');
+if (wa.surface_opacity !== undefined) { 
+    el_opa.value = wa.surface_opacity; 
+    if (el_opa.updateSliderUI) el_opa.updateSliderUI(); // <-- NEW LINE for slider update
+}
+
         } else toggleComp('comp_water_appearance', false);
-        
-        // Water Identifier (often separate in JSON)
-        if (comps['minecraft:water_identifier']) {
-             // Ensure the section is open if only identifier exists
-             toggleComp('comp_water_appearance', true); 
-             setVal('water_identifier', comps['minecraft:water_identifier'].water_identifier);
-        }
 
         // --- Fog ---
         if (comps['minecraft:fog_appearance']) {
@@ -4906,19 +5206,36 @@ function populateClientForm(data) {
             $('grass_is_shaded').checked = !!ga.grass_is_shaded;
         } else toggleComp('comp_grass', false);
 
-        // --- Identifiers ---
-        const idMap = [
-            ['minecraft:atmosphere_identifier', 'comp_atmosphere', 'atmosphere_identifier'],
-            ['minecraft:color_grading_identifier', 'comp_color_grading', 'color_grading_identifier'],
-            ['minecraft:cubemap_identifier', 'comp_cubemap', 'cubemap_identifier'],
-            ['minecraft:lighting_identifier', 'comp_lighting', 'lighting_identifier']
-        ];
-        idMap.forEach(item => {
-            if (comps[item[0]]) {
-                toggleComp(item[1], true);
-                setVal(item[2], comps[item[0]][item[2]]); // Key matches ID
-            } else toggleComp(item[1], false);
-        });
+        // --- Vibrant Visuals (Unified Section) ---
+        // Check if any vibrant visual component exists to enable the main toggle
+        const hasVibrant = comps['minecraft:atmosphere_identifier'] || 
+                           comps['minecraft:color_grading_identifier'] || 
+                           comps['minecraft:cubemap_identifier'] || 
+                           comps['minecraft:lighting_identifier'] || 
+                           comps['minecraft:water_identifier'];
+
+        if (hasVibrant) {
+            toggleComp('comp_vibrant_visuals', true);
+            
+            if(comps['minecraft:atmosphere_identifier']) 
+                setVal('vibrant_atmosphere', comps['minecraft:atmosphere_identifier'].atmosphere_identifier);
+                
+            if(comps['minecraft:color_grading_identifier']) 
+                setVal('vibrant_color_grading', comps['minecraft:color_grading_identifier'].color_grading_identifier);
+                
+            if(comps['minecraft:cubemap_identifier']) 
+                setVal('vibrant_cubemap', comps['minecraft:cubemap_identifier'].cubemap_identifier);
+                
+            if(comps['minecraft:lighting_identifier']) 
+                setVal('vibrant_lighting', comps['minecraft:lighting_identifier'].lighting_identifier);
+                
+            if(comps['minecraft:water_identifier']) 
+                setVal('vibrant_water', comps['minecraft:water_identifier'].water_identifier);
+                
+        } else {
+            toggleComp('comp_vibrant_visuals', false);
+        }
+
 
         // --- Dry Foliage ---
         if (comps['minecraft:dry_foliage_color']) {
@@ -4959,7 +5276,12 @@ function populateClientForm(data) {
             setVal('ambient_mood', as.mood);
             if (as.addition) {
                 setVal('ambient_add_asset', as.addition.asset);
-                setVal('ambient_add_chance', as.addition.chance);
+                const el_amb = document.getElementById('ambient_add_chance');
+if (ambient.ambient_add_chance !== undefined) {
+    el_amb.value = ambient.ambient_add_chance;
+    if (el_amb.updateSliderUI) el_amb.updateSliderUI(); // <-- NEW LINE for slider update
+}
+
             }
             
             // Underwater
@@ -4969,7 +5291,12 @@ function populateClientForm(data) {
                 setVal('underwater_mood', as.underwater_mood);
                 if (as.underwater_addition) {
                     setVal('underwater_add_asset', as.underwater_addition.asset);
-                    setVal('underwater_add_chance', as.underwater_addition.chance);
+                    const el_uw = document.getElementById('underwater_add_chance');
+if (as.underwater_addition && as.underwater_addition.chance !== undefined) {
+    el_uw.value = as.underwater_addition.chance;
+    if (el_uw.updateSliderUI) el_uw.updateSliderUI(); // <-- Essential for slider
+}
+
                 }
             } else {
                 toggleComp('comp_underwater_ambient', false);
@@ -4981,7 +5308,12 @@ function populateClientForm(data) {
             toggleComp('comp_music', true);
             const bm = comps['minecraft:biome_music'];
             setVal('music_definition', bm.music_definition);
-            setVal('music_volume', bm.volume_multiplier);
+            const el_mus = document.getElementById('music_volume');
+if (bm.volume_multiplier !== undefined) {
+    el_mus.value = bm.volume_multiplier;
+    if (el_mus.updateSliderUI) el_mus.updateSliderUI(); // <-- Essential for slider
+}
+
             if (bm.underwater_music !== undefined) {
                 setVal('music_underwater', bm.underwater_music.toString());
             }
@@ -4999,14 +5331,15 @@ function populateClientForm(data) {
 document.getElementById('downloadMcaddonButton').addEventListener('click', async () => {
     // 1. Gather Data
     const serverJsonText = document.getElementById('jsonOutput').textContent;
-    const clientJsonText = document.getElementById('outputJson').textContent; // Note: Uses textContent now
+    const clientJsonText = document.getElementById('outputJson').textContent; 
     const identifier = document.getElementById('identifier').value.trim().toLowerCase();
 
-    // 2. Validation
-    if (!serverJsonText || !clientJsonText) {
-        alert("Please generate BOTH the Server Biome and Client Biome first.");
+    // 2. Validation: Only Server Biome is strictly required now
+    if (!serverJsonText) {
+        alert("Please generate the Server Biome first.");
         return;
     }
+    
     if (!identifier || !/^[a-z0-9._%+\-]+:[a-z0-9._%+\-]+$/.test(identifier)) {
         alert("Invalid Identifier. Please ensure it matches namespace:name pattern.");
         return;
@@ -5016,18 +5349,25 @@ document.getElementById('downloadMcaddonButton').addEventListener('click', async
     let serverData, clientData;
     try {
         serverData = JSON.parse(serverJsonText);
-        clientData = JSON.parse(clientJsonText);
+        // Only parse client data if it exists
+        if (clientJsonText && clientJsonText.trim()) {
+            clientData = JSON.parse(clientJsonText);
+        }
     } catch (e) {
         alert("Error parsing JSON data. Please regenerate.");
         return;
     }
 
+    // Check if we need a Resource Pack (Client Data OR Fogs exist)
+    const hasFogs = window.sessionFogs && Object.keys(window.sessionFogs).length > 0;
+    const hasClient = !!clientData || hasFogs;
+
     // 4. Prepare File Names & IDs
-    const namePart = identifier.split(':')[1];
+    const namePart = identifier.split(':')[1] || identifier;
     const cleanName = namePart.replace(/[^a-z0-9._-]/g, '_');
-    const packName = `BiBuild_${cleanName}`;
+    const packName = `Wanxian_${cleanName}`;
     
-    // Generate UUIDs for linking
+    // Generate UUIDs
     const bpHeaderUuid = generateUuidv4();
     const bpModuleUuid = generateUuidv4();
     const rpHeaderUuid = generateUuidv4();
@@ -5047,47 +5387,64 @@ document.getElementById('downloadMcaddonButton').addEventListener('click', async
             "version": [1, 0, 0],
             "min_engine_version": [1, 21, 0]
         },
-        "modules": [{ "type": "data", "uuid": bpModuleUuid, "version": [1, 0, 0] }],
-        "dependencies": [{ "uuid": rpHeaderUuid, "version": [1, 0, 0] }] // Dependency on RP
+        "modules": [{ "type": "data", "uuid": bpModuleUuid, "version": [1, 0, 0] }]
     };
 
+    // Only add dependency if we are actually creating an RP
+    if (hasClient) {
+        bpManifest.dependencies = [{ "uuid": rpHeaderUuid, "version": [1, 0, 0] }];
+    }
+
     bpFolder.file("manifest.json", JSON.stringify(bpManifest, null, 2));
-    // Add Biome File
     const bpBiomesFolder = bpFolder.folder("biomes");
     bpBiomesFolder.file(`${cleanName}.biome.json`, serverJsonText);
 
-    // 6. Create Resource Pack (RP) Structure
-    const rpFolder = zip.folder(packName + "_RP");
+    // 6. Create Resource Pack (RP) Structure (Only if needed)
+    if (hasClient) {
+        const rpFolder = zip.folder(packName + "_RP");
+        
+        // Add Custom Fogs
+        if (window.addFogsToZip) window.addFogsToZip(rpFolder);
 
-    const rpManifest = {
-        "format_version": 2,
-        "header": {
-            "name": `${packName} RP`,
-            "description": "Resource Pack generated by Wanxian",
-            "uuid": rpHeaderUuid,
-            "version": [1, 0, 0],
-            "min_engine_version": [1, 21, 0]
-        },
-        "modules": [{ "type": "resources", "uuid": rpModuleUuid, "version": [1, 0, 0] }],
-        "dependencies": [{ "uuid": bpHeaderUuid, "version": [1, 0, 0] }] // Dependency on BP
-    };
+        const rpManifest = {
+            "format_version": 2,
+            "header": {
+                "name": `${packName} RP`,
+                "description": "Resource Pack generated by Wanxian",
+                "uuid": rpHeaderUuid,
+                "version": [1, 0, 0],
+                "min_engine_version": [1, 21, 0]
+            },
+            "modules": [{ "type": "resources", "uuid": rpModuleUuid, "version": [1, 0, 0] }],
+            "dependencies": [{ "uuid": bpHeaderUuid, "version": [1, 0, 0] }]
+        };
 
-    rpFolder.file("manifest.json", JSON.stringify(rpManifest, null, 2));
-    // Add Client Biome File
-    const rpBiomesFolder = rpFolder.folder("biomes");
-    rpBiomesFolder.file(`${cleanName}.client_biome.json`, clientJsonText);
+        rpFolder.file("manifest.json", JSON.stringify(rpManifest, null, 2));
+        
+        // Add Client Biome File if available
+        if (clientData) {
+            const rpBiomesFolder = rpFolder.folder("biomes");
+            rpBiomesFolder.file(`${cleanName}.client_biome.json`, JSON.stringify(clientData, null, 2));
+        }
 
-    // 7. Add Icons (Fetch placeholder)
+        // Add Icon to RP
+        try {
+            const response = await fetch('/icons/icon3.png');
+            if (response.ok) {
+                const blob = await response.blob();
+                rpFolder.file("pack_icon.png", blob);
+            }
+        } catch (e) { console.warn("Could not fetch pack icon.", e); }
+    }
+
+    // 7. Add Icon to BP
     try {
         const response = await fetch('/icons/icon3.png');
         if (response.ok) {
             const blob = await response.blob();
             bpFolder.file("pack_icon.png", blob);
-            rpFolder.file("pack_icon.png", blob);
         }
-    } catch (e) {
-        console.warn("Could not fetch pack icon.", e);
-    }
+    } catch (e) { console.warn("Could not fetch pack icon.", e); }
 
     // 8. Export
     try {
@@ -5104,6 +5461,7 @@ document.getElementById('downloadMcaddonButton').addEventListener('click', async
         alert(`Failed to create .mcaddon: ${error.message}`);
     }
 });
+
 
 </script>
 
@@ -5625,6 +5983,710 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 </script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const sliders = document.querySelectorAll('.custom-slider-replacement');
+
+    sliders.forEach(wrapper => {
+        const targetId = wrapper.dataset.targetId;
+        const targetInput = document.getElementById(targetId);
+        if (!targetInput) return;
+
+        const minValue = parseFloat(wrapper.dataset.minValue);
+        const maxValue = parseFloat(wrapper.dataset.maxValue);
+        const decimalPlaces = parseInt(wrapper.dataset.decimalPlaces);
+        
+        // Grab initial value from the hidden input
+        let initialVal = parseFloat(targetInput.value);
+        if (isNaN(initialVal)) initialVal = parseFloat(wrapper.dataset.initialValue);
+
+        // Build HTML
+        wrapper.innerHTML = `
+            <div class="slider-info">
+                <span>Value</span>
+                <span class="slider-val-display">${initialVal.toFixed(decimalPlaces)}</span>
+            </div>
+            <div class="color-bars-container">
+                <div class="color-bar" id="left-bar"></div>
+                <div id="separator-handle"></div>
+                <div class="color-bar" id="right-bar"></div>
+            </div>
+        `;
+
+        const container = wrapper.querySelector('.color-bars-container');
+        const leftBar = wrapper.querySelector('#left-bar');
+        const rightBar = wrapper.querySelector('#right-bar');
+        const displayVal = wrapper.querySelector('.slider-val-display');
+
+        // Update UI Function
+                const updateSliderUI = (val) => {
+            // Clamp value
+            if (val < minValue) val = minValue;
+            if (val > maxValue) val = maxValue;
+
+            const range = maxValue - minValue;
+            const percent = ((val - minValue) / range) * 100;
+
+            // FIXED: Calculate width proportionally based on available space (100% - 16px handle)
+            // This prevents negative calc() values at 0% which caused the "shrinking" glitch
+            leftBar.style.width = `calc((100% - 16px) * ${percent / 100})`; 
+            rightBar.style.width = `calc((100% - 16px) * ${(100 - percent) / 100})`;
+            
+            displayVal.textContent = val.toFixed(decimalPlaces);
+            
+            // REMOVED: The logic that added 'hide-dot' class has been deleted 
+            // to stop the dot from disappearing.
+            
+            
+            // Toggle Dot visibility
+            if ((100 - percent) < 5) rightBar.classList.add('hide-dot');
+            else rightBar.classList.remove('hide-dot');
+            
+            // Sync to hidden input
+            targetInput.value = val.toFixed(decimalPlaces);
+        };
+
+        // Attach method to input so other scripts can call it
+        targetInput.updateSliderUI = () => {
+             const v = parseFloat(targetInput.value);
+             if(!isNaN(v)) updateSliderUI(v);
+        };
+
+        // Drag Logic
+        let isDragging = false;
+        const onDrag = (clientX) => {
+            const rect = container.getBoundingClientRect();
+            let x = clientX - rect.left;
+            let percent = x / rect.width;
+            if (percent < 0) percent = 0; 
+            if (percent > 1) percent = 1;
+            
+            const range = maxValue - minValue;
+            const newVal = minValue + (percent * range);
+            updateSliderUI(newVal);
+        };
+
+        const startDrag = (e) => {
+            isDragging = true; 
+            e.preventDefault();
+            document.addEventListener('mousemove', moveDrag);
+            document.addEventListener('mouseup', endDrag);
+            document.addEventListener('touchmove', moveDrag, {passive: false});
+            document.addEventListener('touchend', endDrag);
+        };
+        
+        const moveDrag = (e) => {
+            if(!isDragging) return;
+            const cx = e.touches ? e.touches[0].clientX : e.clientX;
+            onDrag(cx);
+        };
+        
+        const endDrag = () => {
+            isDragging = false;
+            document.removeEventListener('mousemove', moveDrag);
+            document.removeEventListener('mouseup', endDrag);
+            document.removeEventListener('touchmove', moveDrag);
+            document.removeEventListener('touchend', endDrag);
+        };
+
+        const handle = wrapper.querySelector('#separator-handle');
+        handle.addEventListener('mousedown', startDrag);
+        handle.addEventListener('touchstart', startDrag, {passive: false});
+        container.addEventListener('click', (e) => { if(e.target !== handle) onDrag(e.clientX); });
+
+        // Init
+        updateSliderUI(initialVal);
+    });
+});
+</script>
+<script>
+/**
+ * FOG SYSTEM LOGIC - COMPLETE & FIXED
+ * Handles Dynamic Fog Creator, Import, Export, and Storage.
+ */
+
+// Global Variables
+window.sessionFogs = {};
+const FOG_STORAGE_KEY = 'bibuild_saved_fogs'; 
+
+// Data model to hold the form state while editing
+if (typeof currentFogData === 'undefined') {
+    var currentFogData = {}; 
+}
+let currentActiveTab = 'general';
+
+const DEFAULT_FOG_DATA = {
+    identifier: "custom:new_fog",
+    distance: {
+        air: { enabled: true, color: "#AABBCC", start: 0, end: 64, type: "render" },
+        water: { enabled: false, color: "#4455FF", start: 0, end: 15, type: "render" },
+        weather: { enabled: false, color: "#666666", start: 0, end: 32, type: "render" },
+        lava: { enabled: false, color: "#FF4400", start: 0, end: 2, type: "fixed" },
+        lava_resistance: { enabled: false, color: "#FF4400", start: 0, end: 10, type: "fixed" },
+        powder_snow: { enabled: false, color: "#FFFFFF", start: 0, end: 2, type: "fixed" }
+    }
+};
+
+// --- Helper Functions ---
+
+function updateColorInputUI(textInput, colorPicker, defaultColor = '#000000') {
+    const applyColor = (color) => { colorPicker.value = color || '#000000'; };
+    const parseColor = (val) => {
+        if(!val) return null;
+        val = val.trim();
+        return val; 
+    };
+
+    const initialParsedColor = parseColor(textInput.value);
+    applyColor(initialParsedColor || defaultColor);
+    
+    textInput.addEventListener('input', () => {
+        const c = parseColor(textInput.value);
+        if(c) applyColor(c);
+    });
+    
+    colorPicker.addEventListener('input', () => { 
+        textInput.value = colorPicker.value.toUpperCase(); 
+        textInput.dispatchEvent(new Event('input')); 
+    });
+}
+
+function setFogColorInput(hex) {
+    const text = document.getElementById('fog_dist_color_text');
+    const picker = document.getElementById('fog_dist_color_picker');
+    text.value = hex;
+    picker.value = hex;
+}
+
+function downloadObjectAsJson(exportObj, exportName){
+    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(exportObj, null, 2));
+    const downloadAnchorNode = document.createElement('a');
+    downloadAnchorNode.setAttribute("href",     dataStr);
+    downloadAnchorNode.setAttribute("download", exportName);
+    document.body.appendChild(downloadAnchorNode);
+    downloadAnchorNode.click();
+    downloadAnchorNode.remove();
+}
+
+function handleFileImport(file, callback) {
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (e) => {
+        try {
+            const json = JSON.parse(e.target.result);
+            callback(json);
+        } catch (err) {
+            alert("Invalid JSON file.");
+        }
+    };
+    reader.readAsText(file);
+}
+
+function registerFog(json) {
+    const id = json['minecraft:fog_settings'].description.identifier;
+    window.sessionFogs[id] = {
+        content: json,
+        fileName: id.split(':')[1].replace(/[^a-z0-9._-]/g, '_')
+    };
+    document.getElementById('fog_identifier').value = id;
+    return id;
+}
+
+// --- Main Initialization ---
+
+document.addEventListener('DOMContentLoaded', () => {
+    initFogSystem();
+});
+
+function initFogSystem() {
+    const modal = document.getElementById('fogCreatorModalOverlay');
+    const identifierInput = document.getElementById('fog_identifier'); 
+
+    // Initialize Color Picker in Modal
+    const distColorText = document.getElementById('fog_dist_color_text');
+    const distColorPicker = document.getElementById('fog_dist_color_picker');
+    if(distColorText && distColorPicker) {
+        updateColorInputUI(distColorText, distColorPicker);
+    }
+
+    // --- Tab Navigation ---
+    document.querySelectorAll('.fog-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+            saveCurrentTabToMemory();
+            document.querySelectorAll('.fog-tab').forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            const target = tab.dataset.tab;
+            currentActiveTab = target;
+            renderFogFormTab(target);
+        });
+    });
+
+    // --- Main Page Buttons ---
+
+    // Import Button
+    document.getElementById('btn_import_fog_file').addEventListener('click', () => {
+        document.getElementById('fog_file_input').click();
+    });
+
+    document.getElementById('fog_file_input').addEventListener('change', (e) => {
+        handleFileImport(e.target.files[0], (json) => {
+            registerFog(json);
+            showSnackbar("Fog file imported!");
+        });
+        e.target.value = '';
+    });
+
+    // Open Creator
+    document.getElementById('btn_open_fog_creator').addEventListener('click', () => {
+        const currentId = identifierInput.value.trim();
+        
+        // Logic: Use saved session if exists, otherwise create new
+        if (currentId && window.sessionFogs[currentId]) {
+            parseJsonToFogData(window.sessionFogs[currentId].content);
+        } else {
+            currentFogData = JSON.parse(JSON.stringify(DEFAULT_FOG_DATA));
+            
+            // FIX: If user typed an ID in the main box, enforce it on the new object
+            if (currentId) {
+                currentFogData.identifier = currentId;
+            }
+        }
+
+        // Reset to first tab
+        currentActiveTab = 'general';
+        document.querySelectorAll('.fog-tab').forEach(t => t.classList.remove('active'));
+        document.querySelector('.fog-tab[data-tab="general"]').classList.add('active');
+        renderFogFormTab('general');
+        
+        modal.style.display = 'flex';
+    });
+
+
+    // --- Modal Buttons ---
+
+    // Import JSON (Top Right)
+    document.getElementById('btn_fog_import_json').addEventListener('click', () => {
+        document.getElementById('fog_creator_import_input').click();
+    });
+
+    document.getElementById('fog_creator_import_input').addEventListener('change', (e) => {
+        handleFileImport(e.target.files[0], (json) => {
+            parseJsonToFogData(json);
+            renderFogFormTab(currentActiveTab);
+            showSnackbar("JSON Imported into editor");
+        });
+        e.target.value = '';
+    });
+
+    // Toggle Distance Fog
+    document.getElementById('fog_dist_enable').addEventListener('change', (e) => {
+        const fields = document.getElementById('fog_dist_fields');
+        const msg = document.getElementById('fog_dist_disabled_msg');
+        if (e.target.checked) {
+            fields.style.display = 'block';
+            msg.style.display = 'none';
+        } else {
+            fields.style.display = 'none';
+            msg.style.display = 'block';
+        }
+    });
+
+    // Export (Download)
+    document.getElementById('btn_fog_export_file').addEventListener('click', () => {
+        saveCurrentTabToMemory(); 
+        const json = generateFogJsonFromData();
+        const fileName = (currentFogData.identifier.split(':')[1] || "fog") + ".json";
+        downloadObjectAsJson(json, fileName);
+    });
+
+    // Cancel
+    document.getElementById('btn_fog_cancel').addEventListener('click', () => {
+        modal.style.display = 'none';
+    });
+
+    // Okay (Save)
+    document.getElementById('btn_fog_save_memory').addEventListener('click', () => {
+        saveCurrentTabToMemory();
+        
+        if(!currentFogData.identifier || currentFogData.identifier.length < 3) {
+            alert("Please enter a valid Fog Identifier.");
+            return;
+        }
+
+        const json = generateFogJsonFromData();
+        registerFog(json);
+        modal.style.display = 'none';
+        showSnackbar("Fog configuration saved!");
+    });
+}
+
+// --- Logic: Rendering & Data ---
+
+function renderFogFormTab(tabName) {
+    document.getElementById('tab_content_general').style.display = 'none';
+    document.getElementById('fog_distance_container').style.display = 'none';
+
+    if (tabName === 'general') {
+        document.getElementById('tab_content_general').style.display = 'block';
+        document.getElementById('fog_form_id').value = currentFogData.identifier;
+    } else {
+        const container = document.getElementById('fog_distance_container');
+        container.style.display = 'block';
+        document.getElementById('fog_dist_title').textContent = tabName.replace('_', ' ') + " Fog";
+        
+        const data = currentFogData.distance[tabName] || { enabled: false };
+        
+        document.getElementById('fog_dist_enable').checked = data.enabled;
+        
+        // Refresh visibility
+        const fields = document.getElementById('fog_dist_fields');
+        const msg = document.getElementById('fog_dist_disabled_msg');
+        if (data.enabled) {
+            fields.style.display = 'block';
+            msg.style.display = 'none';
+        } else {
+            fields.style.display = 'none';
+            msg.style.display = 'block';
+        }
+
+        setFogColorInput(data.color || '#FFFFFF');
+        document.getElementById('fog_dist_start').value = data.start !== undefined ? data.start : 0;
+        document.getElementById('fog_dist_end').value = data.end !== undefined ? data.end : 10;
+        document.getElementById('fog_dist_type').value = data.type || 'render';
+    }
+}
+
+function saveCurrentTabToMemory() {
+    if (currentActiveTab === 'general') {
+        const val = document.getElementById('fog_form_id').value.trim();
+        if(val) currentFogData.identifier = val;
+    } else {
+        const tab = currentActiveTab;
+        const enabled = document.getElementById('fog_dist_enable').checked;
+        currentFogData.distance[tab] = {
+            enabled: enabled,
+            color: document.getElementById('fog_dist_color_text').value,
+            start: parseFloat(document.getElementById('fog_dist_start').value) || 0,
+            end: parseFloat(document.getElementById('fog_dist_end').value) || 0,
+            type: document.getElementById('fog_dist_type').value
+        };
+    }
+}
+
+function parseJsonToFogData(json) {
+    const settings = json['minecraft:fog_settings'];
+    if (!settings) return;
+
+    currentFogData.identifier = settings.description?.identifier || "";
+    const dist = settings.distance || {};
+    const types = ['air', 'water', 'weather', 'lava', 'lava_resistance', 'powder_snow'];
+
+    types.forEach(type => {
+        if (dist[type]) {
+            currentFogData.distance[type] = {
+                enabled: true,
+                color: dist[type].fog_color || "#FFFFFF",
+                start: dist[type].fog_start || 0,
+                end: dist[type].fog_end || 0,
+                type: dist[type].render_distance_type || "render"
+            };
+        } else {
+             currentFogData.distance[type] = { enabled: false, color: "#FFFFFF", start: 0, end: 10, type: "render" };
+        }
+    });
+}
+
+function generateFogJsonFromData() {
+    const json = {
+        "format_version": "1.16.0",
+        "minecraft:fog_settings": {
+            "description": { "identifier": currentFogData.identifier },
+            "distance": {}
+        }
+    };
+
+    const types = ['air', 'water', 'weather', 'lava', 'lava_resistance', 'powder_snow'];
+    let hasAny = false;
+
+    types.forEach(type => {
+        const d = currentFogData.distance[type];
+        if (d && d.enabled) {
+            hasAny = true;
+            json['minecraft:fog_settings'].distance[type] = {
+                "fog_color": d.color,
+                "fog_start": d.start,
+                "fog_end": d.end,
+                "render_distance_type": d.type
+            };
+        }
+    });
+
+    if(!hasAny) {
+        json['minecraft:fog_settings'].distance['air'] = {
+            "fog_color": "#ffffff", "fog_start": 0, "fog_end": 64, "render_distance_type": "render"
+        };
+    }
+
+    return json;
+}
+
+// Hook for Main Export
+window.addFogsToZip = function(zipFolder) {
+    const fogIds = Object.keys(window.sessionFogs);
+    if (fogIds.length === 0) return;
+    const fogsFolder = zipFolder.folder("fogs");
+    fogIds.forEach(id => {
+        const data = window.sessionFogs[id];
+        fogsFolder.file(data.fileName + ".json", JSON.stringify(data.content, null, 2));
+    });
+};
+</script>
+
+<script>
+/**
+ * DECORATIVE PRESETS SYSTEM - FINAL
+ */
+
+// --- 1. DATA ---
+
+// --- 2. GLOBAL STATE ---
+const activeDecorationIds = new Set(); // Always starts empty (No saving of items)
+
+document.addEventListener('DOMContentLoaded', () => {
+    initDecorationSystem();
+});
+
+function initDecorationSystem() {
+    const toggleBtn = document.getElementById('decorative-presets-toggle');
+    const toggleIcon = toggleBtn.querySelector('.trailing-icon-button');
+    const toggleIconSymbol = toggleIcon.querySelector('.material-symbols-rounded');
+    const section = document.getElementById('decoration-presets-section');
+    const manageBtn = document.getElementById('btn_manage_decorations');
+    const modal = document.getElementById('decorationModalOverlay');
+    const closeBtn = document.getElementById('btn_close_decorations');
+    const searchInput = document.getElementById('decoration_search');
+    
+    // Storage Key for Toggle Button Only
+    const DECO_TOGGLE_KEY = 'bibuild_deco_toggle';
+
+    function setToggleState(isOn) {
+        toggleIcon.setAttribute('data-toggled', isOn ? 'on' : 'off');
+        toggleIconSymbol.textContent = isOn ? 'toggle_on' : 'toggle_off';
+        toggleIconSymbol.style.color = isOn ? 'var(--md-sys-color-primary)' : 'var(--md-sys-color-on-surface-variant)';
+        section.style.display = isOn ? 'block' : 'none';
+    }
+
+    // Toggle Click
+    toggleBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const isToggled = toggleIcon.getAttribute('data-toggled') === 'on';
+        setToggleState(!isToggled);
+        localStorage.setItem(DECO_TOGGLE_KEY, !isToggled ? 'on' : 'off');
+        document.getElementById('dropdown-menu').classList.remove('visible');
+    });
+
+    // Modal Open
+    manageBtn.addEventListener('click', () => {
+        renderDecorationCategories();
+        renderDecorationItems(DECORATIVE_PRESETS_DATA[0].id);
+        modal.style.display = 'flex';
+    });
+
+    // Modal Close
+    closeBtn.addEventListener('click', () => {
+        modal.style.display = 'none';
+        updateMainSectionCounter();
+    });
+
+    // Search
+    searchInput.addEventListener('input', (e) => {
+        const query = e.target.value.toLowerCase();
+        if(!query) {
+            const activeCat = document.querySelector('.decoration-category.active');
+            if(activeCat) renderDecorationItems(activeCat.dataset.id);
+            return;
+        }
+        const results = [];
+        DECORATIVE_PRESETS_DATA.forEach(cat => {
+            cat.items.forEach(item => {
+                if(item.name.toLowerCase().includes(query) || item.tags.some(t=>t.includes(query))) {
+                    results.push(item);
+                }
+            });
+        });
+        renderCustomList(results);
+    });
+
+    // Restore Toggle State
+    const savedState = localStorage.getItem(DECO_TOGGLE_KEY);
+    setToggleState(savedState === 'on');
+    
+    updateMainSectionCounter();
+}
+
+// --- Render Logic ---
+
+function renderDecorationCategories() {
+    const container = document.getElementById('decoration_categories');
+    container.innerHTML = '';
+    DECORATIVE_PRESETS_DATA.forEach((cat, index) => {
+        const div = document.createElement('div');
+        div.className = `decoration-category ${index === 0 ? 'active' : ''}`;
+        div.dataset.id = cat.id;
+        const selectedCount = cat.items.filter(i => activeDecorationIds.has(i.id)).length;
+        div.innerHTML = `<span>${cat.name}</span><span class="cat-badge" style="display:${selectedCount>0?'inline-block':'none'}">${selectedCount}</span>`;
+        div.addEventListener('click', () => {
+            document.querySelectorAll('.decoration-category').forEach(c => c.classList.remove('active'));
+            div.classList.add('active');
+            renderDecorationItems(cat.id);
+        });
+        container.appendChild(div);
+    });
+}
+
+function renderDecorationItems(categoryId) {
+    const category = DECORATIVE_PRESETS_DATA.find(c => c.id === categoryId);
+    if (!category) return;
+    renderCustomList(category.items);
+}
+
+function renderCustomList(items) {
+    const container = document.getElementById('decoration_items_container');
+    const emptyState = document.getElementById('decoration_empty_state');
+    container.innerHTML = '';
+    container.appendChild(emptyState); 
+
+    if (items.length === 0) { emptyState.style.display = 'block'; return; }
+    emptyState.style.display = 'none';
+
+    items.forEach(item => {
+        const el = document.createElement('div');
+        el.className = 'decoration-item';
+        const isChecked = activeDecorationIds.has(item.id);
+
+        el.innerHTML = `
+            <div class="checkbox-wrapper">
+                <input type="checkbox" ${isChecked ? 'checked' : ''} style="pointer-events: none;"> 
+            </div>
+            <div class="info">
+                <div class="name">${item.name}<span class="files-count">${item.files.length} files</span></div>
+                <div class="tags">Tags: ${item.tags.join(', ')}</div>
+            </div>`;
+
+        el.addEventListener('click', () => {
+            const checkbox = el.querySelector('input');
+            const newState = !checkbox.checked;
+            checkbox.checked = newState;
+            if (newState) activeDecorationIds.add(item.id);
+            else activeDecorationIds.delete(item.id);
+            updateCounters();
+        });
+        container.appendChild(el);
+    });
+}
+
+function updateCounters() {
+    document.getElementById('decoration_total_counter').textContent = activeDecorationIds.size;
+    document.querySelectorAll('.decoration-category').forEach(el => {
+        const catId = el.dataset.id;
+        const cat = DECORATIVE_PRESETS_DATA.find(c => c.id === catId);
+        const count = cat.items.filter(i => activeDecorationIds.has(i.id)).length;
+        const badge = el.querySelector('.cat-badge');
+        badge.textContent = count;
+        badge.style.display = count > 0 ? 'inline-block' : 'none';
+    });
+}
+
+function updateMainSectionCounter() {
+    document.getElementById('decoration-active-count').textContent = `${activeDecorationIds.size} items selected`;
+}
+
+// --- EXPORT HOOKS ---
+
+function getSelectedPresets() {
+    const selected = [];
+    DECORATIVE_PRESETS_DATA.forEach(cat => {
+        cat.items.forEach(item => {
+            if (activeDecorationIds.has(item.id)) selected.push(item);
+        });
+    });
+    return selected;
+}
+
+// HOOK 1: Get Tags for JSON
+window.getDecorationTags = function() {
+    const presets = getSelectedPresets();
+    const tags = new Set();
+    presets.forEach(p => {
+        if(p.tags) p.tags.forEach(t => tags.add(t));
+    });
+    return Array.from(tags);
+};
+
+// HOOK 2: Get Files for ZIP
+window.addDecorationFilesToZip = async function(zipFolder) {
+    // (Existing file fetch logic here...)
+};
+</script>
+
+<script>
+    /**
+     * ADVANCED THEME COLOR SYNC
+     * Ensures meta tag updates exactly when theme changes.
+     */
+    (function() {
+        function applyThemeColor() {
+            // We use a small timeout (50ms) to ensure the DOM and CSS variables 
+            // have fully updated after the class change.
+            setTimeout(() => {
+                // Read from body to capture inherited variables
+                const primaryColor = getComputedStyle(document.body)
+                    .getPropertyValue('--md-sys-color-primary').trim();
+                
+                if (primaryColor) {
+                    let metaTag = document.querySelector('meta[name="theme-color"]');
+                    if (!metaTag) {
+                        // Create if missing
+                        metaTag = document.createElement('meta');
+                        metaTag.name = "theme-color";
+                        document.head.appendChild(metaTag);
+                    }
+                    // Apply
+                    metaTag.setAttribute('content', primaryColor);
+                }
+            }, 50);
+        }
+
+        // 1. Initial Load
+        applyThemeColor();
+        window.addEventListener('load', applyThemeColor);
+
+        // 2. Watch for automatic attribute changes (e.g. System Dark Mode)
+        const observer = new MutationObserver(applyThemeColor);
+        observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class', 'data-theme'] });
+        observer.observe(document.body, { attributes: true, attributeFilter: ['class', 'data-theme'] });
+
+        // 3. Direct Hook: Listen to the Toggle Button
+        // This catches the user click immediately
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        if (themeToggleBtn) {
+            themeToggleBtn.addEventListener('click', applyThemeColor);
+        }
+
+        // 4. Direct Hook: Listen to Theme Modal Options
+        // If you select a specific color theme from the modal
+        const themeModal = document.getElementById('themeModalOverlay');
+        if (themeModal) {
+            themeModal.addEventListener('click', () => {
+                // Allow a slightly longer delay for modal animations/selection logic
+                setTimeout(applyThemeColor, 100); 
+            });
+        }
+    })();
+</script>
+
+
 
 	</body>
 </html>

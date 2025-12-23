@@ -3,7 +3,7 @@
   font-family: 'Material Symbols Rounded';
   font-style: normal;
   font-weight: 100 700;
-  src: url(/sykg-zNym6YjUruM-QrEh7-nyTnjDwKNJ_190FjzaqkNCeE.woff2) format('woff2');
+  src: url(sykg-zNym6YjUruM-QrEh7-nyTnjDwKNJ_190FjzaqkNCeE.woff2) format('woff2');
 }
 
 .material-symbols-rounded {
@@ -329,14 +329,14 @@ h3.collapsed .toggle-icon {
 }
 h3.collapsed .material-symbols-rounded {
   margin-right: 15px;
-  transform: rotate(0deg);
+  transform: rotate(-90deg);
   font-size: 25px;
   font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 1, 'opsz' 20;
 }
 h3 .material-symbols-rounded {
-  transform: rotate(-90deg);
-  margin-right: 13px;
-  font-size: 35px;
+  transform: rotate(0deg);
+  margin-right: 15px;
+  font-size: 25px;
   font-variation-settings: 'FILL' 1, 'wght' 500, 'GRAD' 0, 'opsz' 24;
 }
 .component-section {
@@ -352,11 +352,14 @@ h3 .material-symbols-rounded {
   box-sizing: border-box;
 }
 .component-section.end {
+  margin-bottom: 16px;
   border-bottom-right-radius: var(--radius-l);
   border-bottom-left-radius: var(--radius-l);
 }
 .component-section.single {
   border-radius: var(--radius-l);
+  margin-top: 16px;
+  margin-bottom: 16px;
 }
 /*.component-section.invalid {
   background: var(--md-sys-color-on-tertiary);
@@ -364,6 +367,7 @@ h3 .material-symbols-rounded {
   border: 1px solid var(--md-sys-color-tertiary-container);
 }*/
 .component-section.start {
+  margin-top: 16px;
   border-top-right-radius: var(--radius-l);
   border-top-left-radius: var(--radius-l);
 }
@@ -684,67 +688,84 @@ select:focus {
   height: 0;
 }
 
+/* --- Material 3 Expressive Switch Styles --- */
+/* (Containers and basic structure remain the same) */
+
+/* --- Core Styles (Unchanged) --- */
 /* The Track */
 .slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: var(--md-sys-color-surface-variant); /* M3 Surface variant for off state */
-  border: 2px solid var(--md-sys-color-outline); /* The Outline you requested */
-  border-radius: var(--radius-l); /* Pill shape */
-  box-sizing: border-box; /* Keeps border inside the 32px height */
-  transition: all 0.s cubic-bezier(0.2, 0.0, 0, 1.0); /* Expressive ease */
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--md-sys-color-surface-variant);
+    border: 2px solid var(--md-sys-color-outline);
+    border-radius: var(--radius-l);
+    box-sizing: border-box;
+    /* Increased transition to 0.25s for noticeable bounce */
+    transition: all 0.2s cubic-bezier(0.2, 0.0, 0, 1.0); 
 }
 
 /* The Thumb (Handle) */
 .slider:before {
-  position: absolute;
-  content: "";
-  /* Off State: Smaller Thumb (16px) */
-  height: 16px; 
-  width: 16px; 
-  left: 6px; 
-  bottom: 6px; 
-  background: var(--md-sys-color-outline); /* Thumb matches outline */
-  border-radius: var(--radius-full);
-  transition: all 0.3s cubic-bezier(0.2, 0.0, 0, 1.0); /* Expressive Morphing */
+    position: absolute;
+    content: "";
+    /* OFF State: Smaller Thumb (16px) */
+    height: 16px;
+    width: 16px;
+    left: 6px;
+    bottom: 6px;
+    background: var(--md-sys-color-outline);
+    border-radius: var(--radius-full);
+    /* Transition applied to transform for the 'hit' animation */
+    transition: transform 0.2s cubic-bezier(0.2, 0.8, 0, 1.0),
+                width 0.25s cubic-bezier(0.2, 0.0, 0, 1.0),
+                height 0.25s cubic-bezier(0.2, 0.0, 0, 1.0),
+                left 0.25s cubic-bezier(0.2, 0.0, 0, 1.0),
+                bottom 0.25s cubic-bezier(0.2, 0.0, 0, 1.0); 
 }
 
-/* --- Interaction States --- */
-
-/* Hover: Slight darken on track */
-
-
-/* Checked (ON) State */
+/* --- Checked (ON) State --- */
 input:checked + .slider {
-  background: var(--md-sys-color-primary);
-  border-color: var(--md-sys-color-primary); /* Border matches fill to disappear */
+    background: var(--md-sys-color-primary);
+    border-color: var(--md-sys-color-primary);
 }
 
 input:checked + .slider:before {
-  background: var(--md-sys-color-on-primary); /* Thumb turns white/on-color */
-  /* On State: Thumb Grows (24px) */
-  width: 24px;
-  height: 24px;
-  transform: translateX(18px); /* Move to the right */
-  left: 4px; /* Adjust position for the larger size */
-  bottom: 2px; /* Re-center vertically */
+    background: var(--md-sys-color-on-primary);
+    /* 1. KEY FIX: Size change now happens here (16px -> 24px) for the ON state */
+    width: 24px;
+    height: 24px;
+    transform: translateX(18px); /* Move to the right */
+    left: 4px; /* Adjust left for the 24px size to be centered */
+    bottom: 2px; /* Adjust bottom for the 24px size to be centered */
 }
 
-/* Active/Press State (Optional: Thumb expands slightly for feedback) */
+
+/* --- Active/Press State (The 'Ripple' Feedback) --- */
+/* This handles the momentary size change (28px) while the user presses down */
+
 .switch:active .slider:before {
-  width: 28px;
-  height: 28px;
-  left: 0px; 
-  bottom: 0px; 
-  /* Note: Simple scale effect for feedback */
+    /* Active in OFF state (expands from 16px to 28px) */
+    width: 28px;
+    height: 28px;
+    left: 0px; 
+    bottom: 0px;
 }
+
 input:checked:active + .slider:before {
-    left: 2px; /* Adjust for the checked position */
+    /* Active in ON state (expands from 24px to 28px) */
+    width: 28px;
+    height: 28px;
+    /* Position adjustment for the 28px size at the ON side */
+    transform: translateX(px); 
+    left: 0px; 
+    bottom: 0px;
 }
+
+
 
 .tag-item {
   background: var(--md-sys-color-primary-container);
@@ -752,11 +773,12 @@ input:checked:active + .slider:before {
   padding: 6px 12px;
   border-radius: var(--radius-l);
   font-size: 0.9em;
-  display: flex;
+  margin: 2px;/*no more display: flex; now margin*/
   align-items: center;
   gap: 5px;
 }
 .tag-item .remove-tag-button {
+  margin: 2px;
   background: none;
   border: none;
   color: var(--md-sys-color-on-primary-container);
@@ -980,7 +1002,7 @@ input:checked:active + .slider:before {
 }
 .color-input-picker::-webkit-color-swatch {
   border: none;
-  border-radius: var(--radius-m);
+  border-radius: var(--radius-xs);
   /* Ensure inner swatch is also rounded */
 }
 .color-input-picker::-moz-color-swatch-wrapper {
@@ -1962,4 +1984,300 @@ body {
 /* Initially hide the container */
 #hidden-container {
   display: none;
+}
+
+/* --- Custom Expressive Slider Styles --- */
+:root {
+  --slider-handle-width: 8px;
+  --slider-handle-height: 42px;
+  --slider-track-height: 32px;
+  --slider-radius-outer: 8px;
+  --slider-radius-inner: 4px;
+  --slider-dot-size: 4px;
+  --slider-dot-offset: 8px;
+}
+
+.custom-slider-replacement {
+  margin: 15px 0;
+  padding: 0 4px; /* Slight padding to prevent handle clip */
+  width: 100%;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+.color-bars-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  position: relative;
+  height: var(--slider-track-height);
+  touch-action: none; /* Critical for mobile drag */
+}
+
+.color-bar {
+  height: 100%;
+  transition: width 0.05s linear, opacity 0.2s ease;
+  position: relative;
+}
+
+/* Active Track (Left) */
+#left-bar {
+  background-color: var(--md-sys-color-primary);
+  border-top-left-radius: var(--slider-radius-outer);
+  border-bottom-left-radius: var(--slider-radius-outer);
+  border-top-right-radius: var(--slider-radius-inner);
+  border-bottom-right-radius: var(--slider-radius-inner);
+  margin-right: -2px; /* Pull handle flush */
+}
+
+/* Inactive Track (Right) */
+#right-bar {
+  background-color: var(--md-sys-color-surface-variant);
+  border-top-right-radius: var(--slider-radius-outer);
+  border-bottom-right-radius: var(--slider-radius-outer);
+  border-top-left-radius: var(--slider-radius-inner);
+  border-bottom-left-radius: var(--slider-radius-inner);
+  margin-left: -2px; /* Pull handle flush */
+}
+
+/* Aesthetic Dot */
+#right-bar::after {
+  content: '';
+  display: block;
+  width: var(--slider-dot-size);
+  height: var(--slider-dot-size);
+  background-color: var(--md-sys-color-on-surface);
+  opacity: 0.2;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  right: var(--slider-dot-offset);
+  transform: translateY(-50%);
+  transition: opacity 0.2s;
+}
+
+#right-bar.hide-dot::after {
+  opacity: 0;
+}
+
+/* Handle */
+#separator-handle {
+  width: var(--slider-handle-width);
+  height: var(--slider-handle-height);
+  margin: 4px;
+  background-color: var(--md-sys-color-primary);
+  
+  border-radius: var(--radius-s);
+  cursor: grab;
+  z-index: 5;
+  flex-shrink: 0;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+#separator-handle:active {
+  cursor: grabbing;
+  transform: scale(1.5);
+}
+
+.slider-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: 0.9em;
+  font-weight: 500;
+  color: var(--md-sys-color-primary);
+}
+
+/* --- New CSS for Fog Creator --- */
+
+/* Small Icon Button */
+.m3-icon-btn-small {
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--md-sys-color-outline);
+    background: var(--md-sys-color-surface);
+    color: var(--md-sys-color-primary);
+    border-radius: var(--radius-m);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    flex-shrink: 0;
+}
+
+.m3-icon-btn-small:hover {
+    background: var(--md-sys-color-secondary-container);
+    border-color: var(--md-sys-color-primary);
+}
+
+/* Code Editor Textarea */
+.code-editor {
+    width: 100%;
+    height: 100%;
+    flex-grow: 1;
+    background: var(--md-sys-color-surface-variant);
+    color: var(--md-sys-color-on-surface-variant);
+    border: 1px solid var(--md-sys-color-outline);
+    border-radius: var(--radius-m);
+    padding: 10px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 13px;
+    line-height: 1.4;
+    resize: none;
+    tab-size: 2;
+}
+
+.code-editor:focus {
+    outline: 2px solid var(--md-sys-color-primary);
+    border-color: transparent;
+}
+
+/* Segmented Buttons */
+.segmented-btn-group {
+    display: flex;
+    border: 1px solid var(--md-sys-color-outline);
+    border-radius: var(--radius-l); /* Pill shape */
+    overflow: hidden;
+}
+
+.segmented-btn {
+    background: transparent;
+    border: none;
+    border-right: 1px solid var(--md-sys-color-outline);
+    color: var(--md-sys-color-on-surface);
+    padding: 8px 16px;
+    font-size: 0.9em;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: background 0.2s;
+}
+
+.segmented-btn:last-child {
+    border-right: none;
+}
+
+.segmented-btn:hover {
+    background: var(--md-sys-color-surface-variant);
+}
+
+.segmented-btn .material-symbols-rounded {
+    font-size: 18px;
+}
+
+/* Ensure Dropdown works inside modal */
+#fogCreatorModalOverlay .dropdown-menu {
+    position: absolute;
+    z-index: 2005; /* Higher than modal */
+}
+
+/* Sidebar Tabs */
+.fog-sidebar .fog-tab {
+    padding: 10px 24px;
+    cursor: pointer;
+    font-size: 0.95em;
+    color: var(--md-sys-color-on-surface-variant);
+    border-left: 3px solid transparent;
+    transition: all 0.2s;
+}
+
+.fog-sidebar .fog-tab:hover {
+    background: var(--md-sys-color-surface-variant);
+}
+
+.fog-sidebar .fog-tab.active {
+    background: var(--md-sys-color-secondary-container);
+    color: var(--md-sys-color-on-secondary-container);
+    border-left-color: var(--md-sys-color-primary);
+    font-weight: 500;
+}
+
+.fog-sidebar .fog-tab-header {
+    padding: 15px 24px 5px;
+    font-size: 0.8em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--md-sys-color-primary);
+    font-weight: 700;
+}
+
+/* Form Area */
+.fog-form-content h4 {
+    margin-top: 0;
+    color: var(--md-sys-color-primary);
+}
+
+/* Decoration List Items */
+.decoration-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 24px;
+    border-bottom: 1px solid var(--md-sys-color-outline-variant);
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.decoration-item:hover {
+    background: var(--md-sys-color-surface-variant);
+}
+
+.decoration-item .checkbox-wrapper {
+    margin-right: 16px;
+    display: flex;
+    align-items: center;
+}
+
+.decoration-item .info {
+    flex-grow: 1;
+}
+
+.decoration-item .name {
+    font-weight: 500;
+    font-size: 1rem;
+    color: var(--md-sys-color-on-surface);
+}
+
+.decoration-item .tags {
+    font-size: 0.8rem;
+    color: var(--md-sys-color-secondary);
+    margin-top: 2px;
+}
+
+.decoration-item .files-count {
+    font-size: 0.75rem;
+    color: var(--md-sys-color-outline);
+    background: var(--md-sys-color-surface-variant);
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-left: 8px;
+}
+
+/* Category Active State */
+.decoration-category {
+    padding: 12px 20px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    color: var(--md-sys-color-on-surface-variant);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.decoration-category:hover { background: var(--md-sys-color-surface-variant); }
+.decoration-category.active {
+    background: var(--md-sys-color-secondary-container);
+    color: var(--md-sys-color-on-secondary-container);
+    font-weight: 600;
+}
+.cat-badge {
+    background: var(--md-sys-color-primary);
+    color: var(--md-sys-color-on-primary);
+    font-size: 0.75rem;
+    padding: 2px 6px;
+    border-radius: 10px;
+    min-width: 20px;
+    text-align: center;
+    display: none; /* Hide if 0 */
 }

@@ -2875,59 +2875,6 @@ window.THEME_PALETTES = {
             '--md-sys-color-surface-container-high': '#3030304D'
         }
     },
-    'igla': {
-        name: 'igla',
-        preview: {
-            primary: '#6900FF',
-            secondary: '#93918E',
-            tertiary: '#FAA45A',
-            surface: '#F7FAD7BF'
-        },
-        light: {
-            // --- GEOMETRY ---
-            '--radius-xl': '2px', // Max Rounded Cards
-            '--radius-l': '14px',
-            '--radius-m': '86px',
-            '--radius-s': '6px',
-            '--radius-xm': '34px',
-            '--radius-full': '20%',
-            '--radius-20-percent': '50%',
-            
-            // --- VISUALS ---
-            '--custom-sys-blur': '2px', 
-            
-            '--md-sys-color-primary': '#6900FF',
-            '--md-sys-color-on-primary': '#FEFEFE',
-            '--md-sys-color-primary-container': '#F0E4F9',
-            '--md-sys-color-on-primary-container': '#56DD00',
-            '--md-sys-color-secondary': '#93918E',
-            '--md-sys-color-on-secondary': '#FAF8F8',
-            '--md-sys-color-secondary-container': '#D9FFCCAD', // Glass
-            '--md-sys-color-on-secondary-container': '#2A2828F0',
-            '--md-sys-color-tertiary': '#FAA45A',
-            '--md-sys-color-on-tertiary': '#FFFFFF',
-            '--m#FAA45Ad-sys-color-tertiary-container': '#FCF4CE',
-            '--md-sys-color-on-tertiary-container': '#9E5C10E0',
-            '--md-sys-color-error': '#FF3B30',
-            '--md-sys-color-on-error': '#FFFFFF',
-            '--md-sys-color-error-container': '#FFDCDA',
-            '--md-sys-color-on-error-container': '#410002',
-            '--md-sys-color-background': 'radial-gradient(15deg, #F9F9F9 0%, #E5E5EA 100%, #FCF4CE 17%)', // Subtle gradient
-            '--md-sys-color-on-background': '#8C8D8A',
-            '--md-sys-color-surface': '#F7FAD7BF', // 75% opacity white glass
-            '--md-sys-color-on-surface': '#2C2727',
-            '--md-sys-color-surface-variant': '#DEFFE5',
-            '--md-sys-color-on-surface-variant': '#444141',
-            
-            // Borderless: Outline blends perfectly with surface
-            '--md-sys-color-outline': '#A8956040', 
-            '--md-sys-color-outline-variant': '#E8EAE5',
-            
-            '--md-sys-color-surface-container': '#F6F0DBCC',
-            '--md-sys-color-surface-container-high': '#F7EBE6'
-        },
-        dark: {}
-    },
     'iglaria': {
         name: 'iglaria alient radius',
         preview: {

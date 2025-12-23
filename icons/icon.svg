@@ -1,0 +1,46 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <clipPath id="squircle">
+      <rect x="0" y="0" width="512" height="512" rx="120" ry="120" />
+    </clipPath>
+    
+    <linearGradient id="wGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#7355A8;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#523687;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <rect width="512" height="512" fill="#29243D" rx="120" ry="120" />
+
+  <g transform="translate(0, 10)"> <path d="M135 190 L190 330" 
+          stroke="url(#wGradient)" 
+          stroke-width="90" 
+          stroke-linecap="round" 
+          fill="none" />
+
+    <path d="M190 330 Q256 190 322 330" 
+          stroke="#29243D" 
+          stroke-width="110" 
+          stroke-linecap="round" 
+          stroke-linejoin="round"
+          fill="none" />
+    <path d="M190 330 Q256 190 322 330" 
+          stroke="url(#wGradient)" 
+          stroke-width="90" 
+          stroke-linecap="round" 
+          stroke-linejoin="round"
+          fill="none" />
+
+    <path d="M322 330 L377 190" 
+          stroke="#29243D" 
+          stroke-width="110" 
+          stroke-linecap="round" 
+          fill="none" />
+    <path d="M322 330 L377 190" 
+          stroke="url(#wGradient)" 
+          stroke-width="90" 
+          stroke-linecap="round" 
+          fill="none" />
+          
+  </g>
+</svg>

@@ -1,24 +1,25 @@
-const CACHE_NAME = 'wanxian-v2';
+const CACHE_NAME = 'wanxian-v3';
 const ASSETS_TO_CACHE = [
-    '/',
-    '/index.html',
-    '/app.js',
-    '/sw.js',
-    '/jszip.min.js',
-    '/suggestions.js',
-    '/themes.js',
-    '/styles.css',
-    '/css2.css',
-    '/manifest.json',
-    '/icons/icon.svg',
-    '/icons/icon1.png',
-    '/icons/icon2.png',
-    '/icons/icon3.png',
-    '/icons/maskable.png',
-    '/sykg-zNym6YjUruM-QrEh7-nyTnjDwKNJ_190FjzaqkNCeE.woff2',
-    '/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3KUBHMdazTgWw.woff2',
-    '/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3yUBHMdazQ.woff2',
-    '/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMawCUBHMdazTgWw.woff2'
+    './',
+    'index.html',
+    'app.js',
+    'sw.js',
+    'jszip.min.js',
+    'presets_data.js',
+    'suggestions.js',
+    'themes.js',
+    'styles.css',
+    'css2.css',
+    'manifest.json',
+    'icons/icon.svg',
+    'icons/icon1.png',
+    'icons/icon2.png',
+    'icons/icon3.png',
+    'icons/maskable.png',
+    'sykg-zNym6YjUruM-QrEh7-nyTnjDwKNJ_190FjzaqkNCeE.woff2',
+    'KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3KUBHMdazTgWw.woff2',
+    'KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3yUBHMdazQ.woff2',
+    'KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMawCUBHMdazTgWw.woff2'
 ];
 
 // 1. INSTALL: Cache the "Application Shell"
