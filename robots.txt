@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://cookie-panda.github.io/wanxian/sitemap.xml
+Sitemap: https://cookie-panda.github.io/sitemap.xml
